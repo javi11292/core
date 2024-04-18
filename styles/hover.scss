@@ -1,0 +1,43 @@
+%content {
+	position: relative;
+	transition: all;
+	transition-duration: 200ms;
+	cursor: pointer;
+
+	&::before {
+		position: absolute;
+		inset: 0;
+		height: 100%;
+		width: 100%;
+		background: currentColor;
+		opacity: 0;
+		content: "";
+		pointer-events: none;
+	}
+}
+
+%opacity {
+	@extend %content;
+
+	@media (hover: hover) {
+		&:hover::before {
+			opacity: 0.1;
+		}
+	}
+
+	&:active {
+		transition: none;
+
+		&::before {
+			opacity: 0.2;
+		}
+	}
+}
+
+%scale {
+	@extend %hover;
+
+	&:active {
+		scale: 95%;
+	}
+}

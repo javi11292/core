@@ -1,0 +1,28 @@
+html {
+	height: 100%;
+	font-family: sans-serif;
+	overflow-y: scroll;
+	-webkit-tap-highlight-color: transparent;
+}
+
+body {
+	height: 100%;
+	margin: 0;
+}
+
+a,
+input,
+button {
+	all: unset;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+	display: block;
+}
