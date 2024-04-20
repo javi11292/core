@@ -57,14 +57,15 @@
 
 <style lang="scss">
 	@use "../styles/hover";
+	@use "../styles/theme";
 
 	.button {
 		@extend %scale;
-		background: var(--background-color);
+		color: theme.$textColorInverse;
+		background: theme.$primaryColor;
 		padding: 0.65rem 1rem;
 		border-radius: 100px;
 		overflow: hidden;
-		color: var(--text-color);
 		text-transform: uppercase;
 		font-size: 0.75rem;
 		font-weight: bold;
@@ -85,13 +86,13 @@
 
 	.text {
 		background: none;
-		color: var(--text-color);
+		color: theme.$textColor;
 	}
 
 	.disabled {
 		pointer-events: none;
-		background: var(--disabled-background-color);
-		color: var(--disabled-text-color);
+		background: theme.$primaryColorDisabled;
+		color: theme.$textColorDisabled;
 	}
 
 	.loading {
@@ -103,6 +104,6 @@
 	}
 
 	.content {
-		transition: all 200ms;
+		transition: opacity 200ms;
 	}
 </style>
