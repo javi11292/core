@@ -33,21 +33,26 @@ export const request = async (url: string, init: RequestInit = {}) => {
 	return data;
 };
 
-export const get = (url: string) => {
-	return request(url);
+export const get = (url: string, init?: RequestInit) => {
+	return request(url, init);
 };
 
-export const post = (url: string, body: object) => {
+export const post = (url: string, body: object, init?: RequestInit) => {
 	return request(url, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify(body),
+		...init,
 	});
 };
 
-export const upload = (url: string, data: Record<string, string | Blob | FileList>) => {
+export const upload = (
+	url: string,
+	data: Record<string, string | Blob | FileList>,
+	init?: RequestInit,
+) => {
 	const formData = new FormData();
 
 	Object.entries(data).forEach(([key, value]) => {
@@ -64,5 +69,6 @@ export const upload = (url: string, data: Record<string, string | Blob | FileLis
 	return request(url, {
 		method: "POST",
 		body: formData,
+		...init,
 	});
 };

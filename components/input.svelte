@@ -10,7 +10,7 @@
 		regex?: RegExp;
 		icon?: Snippet;
 		label?: string;
-		value?: unknown;
+		value?: string;
 		disableShrink?: boolean;
 		disableFocusLabel?: boolean;
 		disabled?: boolean;
@@ -37,7 +37,7 @@
 		if (!regex || regex.test(currentTarget.value)) {
 			value = currentTarget.value;
 		} else {
-			currentTarget.value = value;
+			currentTarget.value = value ?? "";
 		}
 	};
 </script>
@@ -62,7 +62,7 @@
 			class:with-icon={icon}
 			oninput={handleInput}
 			aria-label={label}
-			{value}
+			bind:value
 			{disabled}
 		></textarea>
 	{:else}
@@ -72,7 +72,7 @@
 			class:with-icon={icon}
 			oninput={handleInput}
 			aria-label={label}
-			{value}
+			bind:value
 			{disabled}
 		/>
 	{/if}

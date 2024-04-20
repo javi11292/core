@@ -3,16 +3,13 @@ import { PrismaClient } from "@prisma/client";
 
 let prismaClient: PrismaClient;
 
-export const prisma = (
-	platform: App.Platform | undefined,
-	key: keyof App.Platform["env"] = "DB",
-) => {
+export const prisma = (platform: App.Platform | undefined) => {
 	if (!platform) {
 		return prismaClient;
 	}
 
 	if (!prismaClient) {
-		const adapter = new PrismaD1(platform.env[key]);
+		const adapter = new PrismaD1(platform.env.DB);
 		prismaClient = new PrismaClient({ adapter });
 	}
 
