@@ -16,7 +16,7 @@
 	}
 }
 
-%opacity {
+%background {
 	@extend %content;
 
 	@media (hover: hover) {
@@ -35,7 +35,7 @@
 }
 
 %scale {
-	@extend %opacity;
+	@extend %background;
 
 	&:active {
 		scale: 95%;

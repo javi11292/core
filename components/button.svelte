@@ -37,8 +37,8 @@
 	});
 </script>
 
-<svelte:element this={href ? "a" : element} {...elementProps}>
-	<div class:icon class:disabled class:loading class:text class="button">
+<svelte:element this={href ? "a" : element} {...elementProps} class="button">
+	<div class:icon class:disabled class:loading class:text class="element">
 		<div class="content">
 			{#if icon}
 				<Icon {icon} />
@@ -60,15 +60,20 @@
 	@use "../styles/theme";
 
 	.button {
+		border-radius: 100px;
+		overflow: hidden;
+	}
+
+	.element {
 		@extend %scale;
 		color: theme.$textColorInverse;
 		background: theme.$primaryColor;
 		padding: 0.65rem 1rem;
-		border-radius: 100px;
-		overflow: hidden;
 		text-transform: uppercase;
 		font-size: 0.75rem;
 		font-weight: bold;
+		border-radius: inherit;
+		overflow: inherit;
 	}
 
 	.icon {
