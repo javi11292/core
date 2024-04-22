@@ -67,6 +67,7 @@
 		font-size: 0.75rem;
 		font-weight: bold;
 		display: block;
+		text-align: center;
 	}
 
 	.element {
