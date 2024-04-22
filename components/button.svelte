@@ -9,6 +9,7 @@
 		children,
 		onclick,
 		disabled,
+		mirror,
 		icon,
 		href,
 		text,
@@ -18,6 +19,7 @@
 		children?: Snippet;
 		disabled?: boolean;
 		loading?: boolean;
+		mirror?: boolean;
 		icon?: string;
 		onclick?: EventHandler;
 		href?: string;
@@ -39,7 +41,7 @@
 
 <svelte:element this={href ? "a" : element} {...elementProps} class="button">
 	<div class:icon class:disabled class:loading class:text class="element">
-		<div class="content">
+		<div class="content" class:mirror>
 			{#if icon}
 				<Icon {icon} />
 			{:else if children}
@@ -87,6 +89,10 @@
 		left: 50%;
 		top: 50%;
 		translate: -50% -50%;
+	}
+
+	.mirror {
+		rotate: 180deg;
 	}
 
 	.text {
