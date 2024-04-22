@@ -62,6 +62,8 @@
 	.button {
 		border-radius: 100px;
 		overflow: hidden;
+		font-size: 0.75rem;
+		font-weight: bold;
 	}
 
 	.element {
@@ -70,8 +72,6 @@
 		background: theme.$primaryColor;
 		padding: 0.65rem 1rem;
 		text-transform: uppercase;
-		font-size: 0.75rem;
-		font-weight: bold;
 		border-radius: inherit;
 		overflow: inherit;
 	}
