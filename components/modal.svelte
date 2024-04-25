@@ -2,7 +2,6 @@
 	import type { Snippet } from "svelte";
 	import type { AnimationEventHandler } from "svelte/elements";
 
-	// eslint-disable-next-line no-undef
 	let { open = $bindable(false), children }: { open?: boolean; children: Snippet } = $props();
 
 	const handleClick = (event: Event) => {

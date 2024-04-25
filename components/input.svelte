@@ -20,7 +20,6 @@
 	type TextareaProps = Props & { rows: number } & HTMLTextareaAttributes;
 
 	let {
-		// eslint-disable-next-line no-undef
 		value = $bindable(),
 		regex,
 		label,
