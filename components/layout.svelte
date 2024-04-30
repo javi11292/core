@@ -2,6 +2,7 @@
 	import { browser, dev } from "$app/environment";
 	import { onNavigate } from "$app/navigation";
 	import type { Snippet } from "svelte";
+	import island from "./island/island?url";
 	import "./layout/global.scss";
 
 	let { children }: { children: Snippet } = $props();
@@ -21,5 +22,9 @@
 		});
 	});
 </script>
+
+<svelte:head>
+	<script defer type="module" src={island}></script>
+</svelte:head>
 
 {@render children()}
