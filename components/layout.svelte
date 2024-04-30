@@ -2,7 +2,7 @@
 	import { browser, dev } from "$app/environment";
 	import { onNavigate } from "$app/navigation";
 	import type { Snippet } from "svelte";
-	import island from "./island/island?url";
+	import island from "./island/island?worker&url";
 	import "./layout/global.scss";
 
 	let { children }: { children: Snippet } = $props();
