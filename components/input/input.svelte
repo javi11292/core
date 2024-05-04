@@ -84,7 +84,7 @@
 </div>
 
 <style lang="scss">
-	@use "../styles/theme";
+	@use "$lib/core/styles";
 
 	input,
 	textarea {
@@ -106,7 +106,7 @@
 		position: relative;
 
 		&:focus-within {
-			border-color: theme.$primaryColor;
+			border-color: styles.$primaryColor;
 		}
 	}
 
@@ -140,7 +140,7 @@
 		&:focus-within {
 			.label {
 				@extend .disable-shrink;
-				color: theme.$primaryColor;
+				color: styles.$primaryColor;
 			}
 		}
 	}
@@ -161,6 +161,6 @@
 	}
 
 	.disabled {
-		color: theme.$textColorDisabled;
+		color: styles.$textColorDisabled;
 	}
 </style>

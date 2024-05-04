@@ -2,7 +2,7 @@
 	import { browser, dev } from "$app/environment";
 	import { onNavigate } from "$app/navigation";
 	import type { Snippet } from "svelte";
-	import "./layout/global.scss";
+	import "./global.scss";
 
 	let { children }: { children: Snippet } = $props();
 

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
 	import type { EventHandler } from "svelte/elements";
-	import Icon from "./icon.svelte";
-	import LoadingIcon from "./loading-icon.svelte";
+	import Icon from "../icon/icon.svelte";
+	import LoadingIcon from "../loading-icon/loading-icon.svelte";
 
 	let {
 		element = "button",
@@ -58,8 +58,7 @@
 </svelte:element>
 
 <style lang="scss">
-	@use "../styles/hover";
-	@use "../styles/theme";
+	@use "$lib/core/styles";
 
 	.button {
 		border-radius: 100px;
@@ -72,8 +71,8 @@
 
 	.element {
 		@extend %scale;
-		color: theme.$textColorInverse;
-		background: theme.$primaryColor;
+		color: styles.$textColorInverse;
+		background: styles.$primaryColor;
 		padding: 0.65rem 1rem;
 		text-transform: uppercase;
 		border-radius: inherit;
@@ -99,13 +98,13 @@
 
 	.text {
 		background: none;
-		color: theme.$textColor;
+		color: styles.$textColor;
 	}
 
 	.disabled {
 		pointer-events: none;
-		background: theme.$primaryColorDisabled;
-		color: theme.$textColorDisabled;
+		background: styles.$primaryColorDisabled;
+		color: styles.$textColorDisabled;
 	}
 
 	.loading {
