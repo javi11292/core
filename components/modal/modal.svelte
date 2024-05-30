@@ -47,11 +47,11 @@
 	}
 
 	.reverse {
-		animation: disappear 2000ms forwards;
+		animation: disappear 200ms forwards;
 	}
 
 	.reverse::backdrop {
-		animation: fadeOut 2000ms forwards;
+		animation: fadeOut 200ms forwards;
 	}
 
 	dialog {
