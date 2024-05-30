@@ -64,7 +64,7 @@
 		border-radius: 100px;
 		overflow: hidden;
 		font-size: 0.75rem;
-		font-weight: bold;
+		font-weight: 700;
 		display: block;
 		text-align: center;
 	}
