@@ -61,7 +61,7 @@
 			class:with-icon={icon}
 			oninput={handleInput}
 			aria-label={label}
-			bind:value
+			{value}
 			{disabled}
 		></textarea>
 	{:else}
@@ -71,7 +71,7 @@
 			class:with-icon={icon}
 			oninput={handleInput}
 			aria-label={label}
-			bind:value
+			{value}
 			{disabled}
 		/>
 	{/if}
