@@ -12,14 +12,16 @@ const DIFF =
 const run = (/** @type {string} */ command) => {
 	console.log(`> ${command}\n`);
 
-	const result = spawnSync(command, {
-		stdio: ["inherit", "pipe", "inherit"],
+	const { stdout, stderr } = spawnSync(command, {
+		stdio: ["inherit", "pipe", "pipe"],
 		shell: true,
-	})
-		.stdout.toString()
-		.trim();
+	});
+
+	const result = stdout.toString().trim();
+	const error = stderr.toString().trim();
 
 	result && console.log(`${result}\n`);
+	error && console.error(`${error}\n`);
 
 	return result;
 };
