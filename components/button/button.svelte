@@ -4,6 +4,18 @@
 	import Icon from "../icon/icon.svelte";
 	import LoadingIcon from "../loading-icon/loading-icon.svelte";
 
+	type Props = {
+		element?: string;
+		children?: Snippet;
+		disabled?: boolean;
+		loading?: boolean;
+		mirror?: boolean;
+		icon?: string;
+		onclick?: EventHandler;
+		href?: string;
+		text?: boolean;
+	};
+
 	let {
 		element = "button",
 		children,
@@ -14,17 +26,7 @@
 		href,
 		text,
 		loading,
-	}: {
-		element?: string;
-		children?: Snippet;
-		disabled?: boolean;
-		loading?: boolean;
-		mirror?: boolean;
-		icon?: string;
-		onclick?: EventHandler;
-		href?: string;
-		text?: boolean;
-	} = $props();
+	}: Props = $props();
 
 	let elementProps = $derived.by(() => {
 		if (href) {

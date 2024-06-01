@@ -2,7 +2,9 @@
 	import type { Snippet } from "svelte";
 	import type { AnimationEventHandler } from "svelte/elements";
 
-	let { open = $bindable(false), children }: { open?: boolean; children: Snippet } = $props();
+	type Props = { open?: boolean; children: Snippet };
+
+	let { open = $bindable(false), children }: Props = $props();
 
 	const handleClick = (event: Event) => {
 		if (event.target === dialog) {

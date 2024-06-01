@@ -4,7 +4,9 @@
 	import type { Snippet } from "svelte";
 	import "./global.scss";
 
-	let { children }: { children: Snippet } = $props();
+	type Props = { children: Snippet };
+
+	let { children }: Props = $props();
 
 	if (browser && !dev && navigator.serviceWorker) {
 		navigator.serviceWorker.register("/service-worker.js");
