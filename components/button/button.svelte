@@ -6,6 +6,7 @@
 
 	type Props = {
 		element?: string;
+		disableScale?: boolean;
 		children?: Snippet;
 		disabled?: boolean;
 		loading?: boolean;
@@ -18,6 +19,7 @@
 
 	let {
 		element = "button",
+		disableScale,
 		children,
 		onclick,
 		disabled,
@@ -42,7 +44,15 @@
 </script>
 
 <svelte:element this={href ? "a" : element} {...elementProps} class="button">
-	<div class:icon class:disabled class:loading class:text class="element">
+	<div
+		class:icon
+		class:disabled
+		class:loading
+		class:text
+		class:scale={!disableScale}
+		class:background={disableScale}
+		class="element"
+	>
 		<div class="content" class:mirror>
 			{#if icon}
 				<Icon {icon} />
@@ -69,14 +79,21 @@
 		font-weight: 700;
 		display: block;
 		text-align: center;
+		text-transform: uppercase;
+	}
+
+	.scale {
+		@extend %scale;
+	}
+
+	.background {
+		@extend %background;
 	}
 
 	.element {
-		@extend %scale;
 		color: styles.$textColorInverse;
 		background: styles.$primaryColor;
 		padding: 0.65rem 1rem;
-		text-transform: uppercase;
 		border-radius: inherit;
 		overflow: inherit;
 	}
