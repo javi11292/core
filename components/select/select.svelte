@@ -1,10 +1,12 @@
 <script lang="ts" context="module">
-	export type Option = { label?: string; value: string };
+	export type Option<T = unknown> = { label?: string; value: T };
 </script>
 
 <script lang="ts">
 	import type { FocusEventHandler, MouseEventHandler } from "svelte/elements";
 	import Button from "../button/button.svelte";
+	import Icon from "../icon/icon.svelte";
+	import { arrowDown } from "../icons";
 	import Input from "../input/input.svelte";
 	import Tooltip from "../tooltip/tooltip.svelte";
 
@@ -15,7 +17,7 @@
 		disableShrink?: boolean;
 	};
 
-	let { options, label, selected, disableShrink }: Props = $props();
+	let { options, label, selected = $bindable(), disableShrink }: Props = $props();
 
 	let show = $state(false);
 	let buttons: HTMLElement;
@@ -53,7 +55,11 @@
 			onclick={handleClick}
 			{label}
 			{disableShrink}
-		/>
+		>
+			{#snippet icon()}
+				<Icon icon={arrowDown} />
+			{/snippet}
+		</Input>
 
 		{#snippet tooltip()}
 			<div bind:this={buttons}>
@@ -71,9 +77,19 @@
 	.select {
 		display: contents;
 
+		:global(.input) {
+			cursor: pointer;
+		}
+
+		:global(.icon) {
+			pointer-events: none;
+		}
+
 		:global(.button) {
 			text-transform: none;
 			border-radius: unset;
+			width: 100%;
+			color: white;
 		}
 	}
 </style>
