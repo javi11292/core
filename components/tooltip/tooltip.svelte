@@ -33,6 +33,7 @@
 <style lang="scss">
 	.container {
 		position: relative;
+		z-index: 1;
 	}
 
 	.tooltip {
