@@ -15,6 +15,7 @@
 		onclick?: EventHandler;
 		href?: string;
 		text?: boolean;
+		title?: string;
 	};
 
 	let {
@@ -28,6 +29,7 @@
 		href,
 		text,
 		loading,
+		title,
 	}: Props = $props();
 
 	let elementProps = $derived.by(() => {
@@ -43,7 +45,7 @@
 	});
 </script>
 
-<svelte:element this={href ? "a" : element} {...elementProps} class="button">
+<svelte:element this={href ? "a" : element} {title} {...elementProps} class="button">
 	<div
 		class:icon
 		class:disabled
