@@ -1,8 +1,10 @@
 import { spawnSync } from "node:child_process";
 
+const arg3 = process.argv[3];
+
 const database = process.argv[2];
-const message = process.argv[3];
-const remote = process.argv[4];
+const message = arg3 !== "--remote" ? arg3 : null;
+const remote = message ? process.argv[4] : arg3;
 
 const CREATE = `wrangler d1 migrations create ${database} ${message}`;
 const APPLY = `wrangler d1 migrations apply ${database}`;
