@@ -1,2 +1,6 @@
 @forward "theme";
 @forward "hover";
+
+%view-transition {
+	outline: 1px solid transparent;
+}
