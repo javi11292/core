@@ -82,6 +82,7 @@
 		display: block;
 		text-align: center;
 		text-transform: uppercase;
+		text-wrap: nowrap;
 	}
 
 	.scale {
