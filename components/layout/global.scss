@@ -19,6 +19,10 @@ button {
 	all: unset;
 }
 
+input[hidden] {
+	display: none;
+}
+
 img,
 svg,
 video,
