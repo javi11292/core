@@ -15,6 +15,7 @@
 
 	let {
 		element = "button",
+		type = "button",
 		disableScale,
 		children,
 		onclick,
@@ -34,7 +35,7 @@
 		}
 
 		if (element === "button") {
-			return { onclick, disabled: disabled || loading };
+			return { onclick, disabled: disabled || loading, type };
 		}
 
 		return { role: "button", tabindex: 0, onclick };
