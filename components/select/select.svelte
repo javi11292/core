@@ -50,7 +50,7 @@
 		<Input
 			readonly
 			disableFocusLabel
-			value={selected?.label}
+			value={selected?.label || ""}
 			onblur={handleBlur}
 			onclick={handleClick}
 			{label}
