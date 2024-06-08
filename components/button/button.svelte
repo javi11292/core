@@ -72,7 +72,7 @@
 </svelte:element>
 
 <style lang="scss">
-	@use "$lib/core/styles";
+	@use "$lib/core/styles" as *;
 
 	.button {
 		border-radius: 100px;
@@ -94,8 +94,8 @@
 	}
 
 	.element {
-		color: styles.$textColorInverse;
-		background: styles.$primaryColor;
+		color: $textColorInverse;
+		background: $primaryColor;
 		padding: 0.65rem 1rem;
 		border-radius: inherit;
 		overflow: inherit;
@@ -120,13 +120,13 @@
 
 	.text {
 		background: none;
-		color: styles.$textColor;
+		color: $textColor;
 	}
 
 	.disabled {
 		pointer-events: none;
-		background: styles.$primaryColorDisabled;
-		color: styles.$textColorDisabled;
+		background: $primaryColorDisabled;
+		color: $textColorDisabled;
 	}
 
 	.loading {
