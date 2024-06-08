@@ -61,8 +61,8 @@
 		border: none;
 		border-radius: 0.4rem;
 		box-shadow: 0 0.4rem 0.6rem black;
-		max-width: 90dvw;
-		max-height: 90dvh;
+		max-width: 90vw;
+		max-height: 90vh;
 		padding: 0;
 		overflow: hidden;
 		margin: auto;
