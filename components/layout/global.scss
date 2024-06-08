@@ -1,6 +1,5 @@
 html {
 	height: 100%;
-	font-family: sans-serif;
 	scrollbar-width: none;
 	user-select: none;
 	-webkit-tap-highlight-color: transparent;
@@ -8,7 +7,8 @@ html {
 
 body {
 	min-height: 100%;
-	margin: 0;
+	font-family: sans-serif;
+	line-height: 1.5;
 }
 
 a,
@@ -20,10 +20,11 @@ button {
 img,
 svg,
 video,
-canvas,
-audio,
-iframe,
-embed,
-object {
+canvas {
 	display: block;
+}
+
+* {
+	margin: 0;
+	box-sizing: border-box;
 }
