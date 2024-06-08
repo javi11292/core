@@ -16,8 +16,8 @@
 		disabled?: boolean;
 	};
 
-	type InputProps = Props & { rows?: undefined } & HTMLInputAttributes;
-	type TextareaProps = Props & { rows: number } & HTMLTextareaAttributes;
+	type InputProps = Omit<HTMLInputAttributes, "value"> & Props & { rows?: undefined };
+	type TextareaProps = Omit<HTMLTextareaAttributes, "value"> & Props & { rows: number };
 
 	let {
 		value = $bindable(),

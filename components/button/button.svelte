@@ -1,22 +1,17 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
-	import type { EventHandler } from "svelte/elements";
+	import type { HTMLButtonAttributes } from "svelte/elements";
 	import Icon from "../icon/icon.svelte";
 	import LoadingIcon from "../loading-icon/loading-icon.svelte";
 
 	type Props = {
 		element?: string;
 		disableScale?: boolean;
-		children?: Snippet;
-		disabled?: boolean;
 		loading?: boolean;
 		mirror?: boolean;
 		icon?: string;
-		onclick?: EventHandler;
 		href?: string;
 		text?: boolean;
-		title?: string;
-	};
+	} & HTMLButtonAttributes;
 
 	let {
 		element = "button",
@@ -30,6 +25,7 @@
 		text,
 		loading,
 		title,
+		...props
 	}: Props = $props();
 
 	let elementProps = $derived.by(() => {
@@ -45,7 +41,7 @@
 	});
 </script>
 
-<svelte:element this={href ? "a" : element} {title} {...elementProps} class="button">
+<svelte:element this={href ? "a" : element} {title} {...elementProps} {...props} class="button">
 	<div
 		class:icon
 		class:disabled
