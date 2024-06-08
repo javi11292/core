@@ -75,9 +75,10 @@
 	@use "$lib/core/styles" as *;
 
 	.button {
-		border-radius: 100px;
+		border-radius: 10rem;
 		overflow: hidden;
-		font-size: 0.75rem;
+		font-size: 1.2rem;
+		line-height: 1;
 		font-weight: 700;
 		display: block;
 		text-align: center;
@@ -96,15 +97,15 @@
 	.element {
 		color: $textColorInverse;
 		background: $primaryColor;
-		padding: 0.65rem 1rem;
+		padding: 1rem 1.6rem;
 		border-radius: inherit;
 		overflow: inherit;
 	}
 
 	.icon {
 		border-radius: 50%;
-		padding: 0.5rem;
-		font-size: 1.5rem;
+		padding: 0.8rem;
+		font-size: 2.4rem;
 	}
 
 	.loading-icon {

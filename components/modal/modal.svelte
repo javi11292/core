@@ -59,12 +59,13 @@
 	dialog {
 		animation: appear 200ms;
 		border: none;
-		border-radius: 0.25rem;
-		box-shadow: 0 4px 6px black;
+		border-radius: 0.4rem;
+		box-shadow: 0 0.4rem 0.6rem black;
 		max-width: 90dvw;
 		max-height: 90dvh;
 		padding: 0;
 		overflow: hidden;
+		margin: auto;
 
 		div {
 			overflow: auto;
