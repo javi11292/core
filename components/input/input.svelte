@@ -135,6 +135,7 @@
 		white-space: nowrap;
 		transition: all 200ms;
 		padding: 0.25rem 0;
+		color: $textColorDisabled;
 	}
 
 	.disable-shrink {
