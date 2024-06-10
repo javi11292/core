@@ -8,7 +8,7 @@ const REFRESH_TOKEN = "refreshToken";
 const ACCESS_TOKEN = "accessToken";
 const ONE_YEAR = 31536000;
 
-const refreshAccessToken = async (cookies: Cookies, platform?: App.Platform) => {
+const refreshAccessToken = async (cookies: Cookies, platform: App.Platform | undefined) => {
 	const refreshToken = cookies.get(REFRESH_TOKEN);
 	const accessToken = cookies.get(ACCESS_TOKEN);
 
@@ -50,7 +50,13 @@ const handleError = async (cookies: Cookies, platform?: App.Platform) => {
 	}
 };
 
-export const verifyAccessToken = async (cookies: Cookies, platform?: App.Platform) => {
+export const verifyAccessToken = async ({
+	cookies,
+	platform,
+}: {
+	cookies: Cookies;
+	platform: App.Platform | undefined;
+}) => {
 	const accessToken = cookies.get(ACCESS_TOKEN);
 
 	if (!accessToken) {
@@ -59,13 +65,16 @@ export const verifyAccessToken = async (cookies: Cookies, platform?: App.Platfor
 
 	try {
 		const { id } = jwt.verify(accessToken, ACCESS_TOKEN_SECRET) as JwtPayload;
-		return id;
+		return id as number;
 	} catch {
 		return handleError(cookies, platform);
 	}
 };
 
-export const setRefreshToken = async (id: number, cookies: Cookies, platform?: App.Platform) => {
+export const setRefreshToken = async (
+	id: number,
+	{ cookies, platform }: { cookies: Cookies; platform: App.Platform | undefined },
+) => {
 	const refreshToken = jwt.sign({ id }, REFRESH_TOKEN_SECRET, { expiresIn: "1y" });
 	const accessToken = jwt.sign({ id }, ACCESS_TOKEN_SECRET, { expiresIn: "5m" });
 
