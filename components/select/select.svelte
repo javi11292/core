@@ -14,10 +14,9 @@
 		options: Option[];
 		label?: string;
 		selected?: Option;
-		disableShrink?: boolean;
 	};
 
-	let { options, label, selected = $bindable(), disableShrink }: Props = $props();
+	let { options, label, selected = $bindable() }: Props = $props();
 
 	let show = $state(false);
 	let buttons: HTMLElement;
@@ -54,7 +53,6 @@
 			onblur={handleBlur}
 			onclick={handleClick}
 			{label}
-			{disableShrink}
 		>
 			{#snippet icon()}
 				<Icon icon={arrowDown} />

@@ -12,6 +12,7 @@
 		label?: string;
 		value?: string;
 		disableShrink?: boolean;
+		disableGrow?: boolean;
 		disableFocusLabel?: boolean;
 		disabled?: boolean;
 	};
@@ -24,6 +25,7 @@
 		regex,
 		label,
 		disableShrink,
+		disableGrow,
 		disableFocusLabel,
 		disabled,
 		icon,
@@ -48,7 +50,7 @@
 
 	<div class:with-icon={icon} class="label-container">
 		{#if label}
-			<div class:disable-shrink={value || disableShrink} class="label">
+			<div class:shrink={value || disableGrow} class:disable-shrink={disableShrink} class="label">
 				{label}
 			</div>
 		{/if}
@@ -73,7 +75,6 @@
 
 	input,
 	textarea {
-		all: unset;
 		grid-column-start: 1;
 		grid-row-start: 2;
 		padding: 0.25rem 0;
@@ -122,7 +123,7 @@
 	.focus-label {
 		&:focus-within {
 			.label {
-				@extend .disable-shrink;
+				@extend .shrink;
 				color: $primaryColor;
 			}
 		}
@@ -133,16 +134,15 @@
 		top: 1.6rem;
 		transform-origin: left;
 		white-space: nowrap;
+		will-change: translate, scale;
 		transition: all 200ms;
 		padding: 0.25rem 0;
 		color: $textColorDisabled;
 	}
 
-	.disable-shrink {
-		translate: 0 -100%;
-		font-size: 1.2rem;
-		line-height: 1.6rem;
-		padding: 0;
+	.shrink:not(.disable-shrink) {
+		translate: 0 calc(-50% - 0.8rem);
+		scale: 0.75;
 	}
 
 	.disabled {
