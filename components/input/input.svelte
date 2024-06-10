@@ -62,10 +62,23 @@
 	</div>
 
 	{#if props.rows !== undefined}
-		<textarea {...props} class:disabled oninput={handleInput} aria-label={label} {value} {disabled}
+		<textarea
+			{...props}
+			class:disabled
+			oninput={handleInput}
+			aria-label={label}
+			value={value ?? ""}
+			{disabled}
 		></textarea>
 	{:else}
-		<input {...props} class:disabled oninput={handleInput} aria-label={label} {value} {disabled} />
+		<input
+			{...props}
+			class:disabled
+			oninput={handleInput}
+			aria-label={label}
+			value={value ?? ""}
+			{disabled}
+		/>
 	{/if}
 
 	{#if icon}
@@ -75,7 +88,7 @@
 	{/if}
 
 	{#if error}
-		<span transition:fade={{ duration: 200 }} class="error">
+		<span in:fade={{ duration: 200 }} class="error">
 			{error}
 		</span>
 	{/if}
