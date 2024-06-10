@@ -5,6 +5,7 @@
 		HTMLInputAttributes,
 		HTMLTextareaAttributes,
 	} from "svelte/elements";
+	import { fade } from "svelte/transition";
 
 	type Props = {
 		regex?: RegExp;
@@ -15,6 +16,7 @@
 		disableGrow?: boolean;
 		disableFocusLabel?: boolean;
 		disabled?: boolean;
+		error?: string;
 	};
 
 	type InputProps = Omit<HTMLInputAttributes, "value"> & Props & { rows?: undefined };
@@ -29,17 +31,20 @@
 		disableFocusLabel,
 		disabled,
 		icon,
+		error,
 		...props
 	}: InputProps | TextareaProps = $props();
 
-	const handleInput: FormEventHandler<HTMLInputElement | HTMLTextAreaElement> = ({
-		currentTarget,
-	}) => {
+	const handleInput: FormEventHandler<HTMLInputElement | HTMLTextAreaElement> = (event) => {
+		const { currentTarget } = event;
+
 		if (!regex || regex.test(currentTarget.value)) {
 			value = currentTarget.value;
 		} else {
 			currentTarget.value = value ?? "";
 		}
+
+		(props.oninput as FormEventHandler<HTMLInputElement | HTMLTextAreaElement>)?.(event);
 	};
 </script>
 
@@ -68,10 +73,18 @@
 			{@render icon()}
 		</div>
 	{/if}
+
+	{#if error}
+		<span transition:fade={{ duration: 200 }} class="error">
+			{error}
+		</span>
+	{/if}
 </div>
 
 <style lang="scss">
 	@use "$lib/core/styles" as *;
+
+	$labelHeight: 1.6rem;
 
 	input,
 	textarea {
@@ -79,8 +92,7 @@
 		grid-row-start: 2;
 		padding: 0.25rem 0;
 		width: 100%;
-		transition: all;
-		transition-duration: 200ms;
+		transition: all 200ms;
 	}
 
 	.input {
@@ -91,6 +103,10 @@
 
 		&:focus-within {
 			border-color: $primaryColor;
+		}
+
+		&:has(.error) {
+			border-color: red;
 		}
 	}
 
@@ -106,7 +122,7 @@
 	}
 
 	.label-space {
-		height: 1.6rem;
+		height: $labelHeight;
 		grid-column-start: 1;
 		grid-row-start: 1;
 	}
@@ -131,7 +147,7 @@
 
 	.label {
 		position: absolute;
-		top: 1.6rem;
+		top: $labelHeight;
 		transform-origin: left;
 		white-space: nowrap;
 		will-change: translate, scale;
@@ -141,11 +157,20 @@
 	}
 
 	.shrink:not(.disable-shrink) {
-		translate: 0 calc(-50% - 0.8rem);
+		translate: 0 calc(-50% - calc($labelHeight / 2));
 		scale: 0.75;
 	}
 
 	.disabled {
 		color: $textColorDisabled;
+	}
+
+	.error {
+		color: red;
+		font-size: 1.2rem;
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		translate: 0 100%;
 	}
 </style>
