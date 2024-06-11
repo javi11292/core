@@ -1,6 +1,7 @@
 import { ACCESS_TOKEN_SECRET } from "$env/static/private";
 import { prisma } from "$lib/core/utils/prisma.server";
 import { error, type Cookies } from "@sveltejs/kit";
+import { Buffer } from "node:buffer";
 import { createHmac, randomUUID } from "node:crypto";
 
 const REFRESH_TOKEN = "refreshToken";
