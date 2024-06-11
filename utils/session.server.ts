@@ -1,8 +1,8 @@
+import { ACCESS_TOKEN_SECRET } from "$env/static/private";
 import { prisma } from "$lib/core/utils/prisma.server";
 import { error, type Cookies } from "@sveltejs/kit";
 import { createHmac, randomUUID } from "node:crypto";
 
-const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || "";
 const REFRESH_TOKEN = "refreshToken";
 const ACCESS_TOKEN = "accessToken";
 const ONE_YEAR = 31536000;
