@@ -14,7 +14,7 @@ type Event = {
 };
 
 const generateAccessToken = (session: string) => {
-	const data = Buffer.from(JSON.stringify([session, Math.floor(Date.now() / 1000) + 10])).toString(
+	const data = Buffer.from(JSON.stringify([session, Math.floor(Date.now() / 1000) + 60])).toString(
 		"base64",
 	);
 	const signature = createHmac("sha256", ACCESS_TOKEN_SECRET).update(data).digest("base64");
