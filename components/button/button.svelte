@@ -73,7 +73,6 @@
 
 	.button {
 		border-radius: 10rem;
-		overflow: hidden;
 		font-size: 1.2rem;
 		line-height: 1;
 		font-weight: 700;
@@ -96,13 +95,13 @@
 		background: $primaryColor;
 		padding: 1rem 1.6rem;
 		border-radius: inherit;
-		overflow: inherit;
+		overflow: hidden;
 	}
 
 	.icon {
 		border-radius: 50%;
 		padding: 0.8rem;
-		font-size: 2.4rem;
+		font-size: 2em;
 	}
 
 	.loading-icon {

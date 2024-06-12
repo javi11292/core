@@ -60,7 +60,7 @@
 		animation: appear 200ms;
 		border: none;
 		border-radius: 0.4rem;
-		box-shadow: 0 0.4rem 0.6rem black;
+		box-shadow: 0 0.4rem 0.6rem;
 		max-width: 90vw;
 		max-height: 90vh;
 		padding: 0;
