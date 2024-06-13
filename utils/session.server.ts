@@ -25,6 +25,10 @@ const generateAccessToken = (session: string) => {
 const verifyAccessToken = (token: string) => {
 	const [data, signature] = token.split(".");
 
+	if (!data) {
+		throw new Error();
+	}
+
 	if (createHmac("sha256", ACCESS_TOKEN_SECRET).update(data).digest("base64") !== signature) {
 		throw new Error();
 	}
