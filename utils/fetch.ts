@@ -57,7 +57,7 @@ export const upload = (
 
 	Object.entries(data).forEach(([key, value]) => {
 		if (value instanceof FileList) {
-			for (let file of value) {
+			for (const file of value) {
 				formData.append(key, file);
 			}
 
