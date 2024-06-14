@@ -9,7 +9,7 @@
 	let { children }: Props = $props();
 
 	$effect(() => {
-		if (!dev && navigator.serviceWorker) {
+		if (!dev && "serviceWorker" in navigator) {
 			navigator.serviceWorker.register("/service-worker.js");
 		}
 	});
