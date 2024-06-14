@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { browser, dev } from "$app/environment";
+	import { dev } from "$app/environment";
 	import { onNavigate } from "$app/navigation";
 	import type { Snippet } from "svelte";
 	import "./global.scss";
@@ -8,9 +8,11 @@
 
 	let { children }: Props = $props();
 
-	if (browser && !dev && navigator.serviceWorker) {
-		navigator.serviceWorker.register("/service-worker.js");
-	}
+	$effect(() => {
+		if (!dev && navigator.serviceWorker) {
+			navigator.serviceWorker.register("/service-worker.js");
+		}
+	});
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
