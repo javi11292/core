@@ -91,11 +91,15 @@
 	}
 
 	.element {
-		color: $textColorInverse;
-		background: $primaryColor;
 		padding: 1rem 1.6rem;
 		border-radius: inherit;
 		overflow: hidden;
+	}
+
+	.element:not(:where(.text)) {
+		box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.4);
+		background: $primaryColor;
+		color: $textColorInverse;
 	}
 
 	.icon {
@@ -113,11 +117,6 @@
 
 	.mirror {
 		rotate: 180deg;
-	}
-
-	.text {
-		background: none;
-		color: $textColor;
 	}
 
 	.disabled {
