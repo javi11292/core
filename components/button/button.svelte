@@ -69,8 +69,6 @@
 </svelte:element>
 
 <style lang="scss">
-	@use "$lib/core/styles" as *;
-
 	.button {
 		border-radius: 10rem;
 		font-size: 1.2rem;

@@ -9,3 +9,15 @@
 	@extend %view-transition;
 	view-transition-name: $name;
 }
+
+@mixin tablet {
+	@media (min-width: 40em) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (min-width: 80em) {
+		@content;
+	}
+}

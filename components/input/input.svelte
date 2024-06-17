@@ -95,8 +95,6 @@
 </div>
 
 <style lang="scss">
-	@use "$lib/core/styles" as *;
-
 	$labelHeight: 1.6rem;
 
 	input,
