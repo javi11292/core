@@ -52,13 +52,13 @@
 		class:background={disableScale}
 		class="element"
 	>
-		<div class="content" class:mirror>
+		<span class="content" class:mirror>
 			{#if icon}
 				<Icon {icon} />
 			{:else if children}
 				{@render children()}
 			{/if}
-		</div>
+		</span>
 
 		{#if loading}
 			<div class="loading-icon">
@@ -133,5 +133,6 @@
 
 	.content {
 		transition: opacity 200ms;
+		vertical-align: middle;
 	}
 </style>
