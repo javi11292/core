@@ -168,7 +168,7 @@
 	}
 
 	.shrink:not(.disable-shrink) {
-		translate: 0 calc(-50% - calc($labelHeight / 2));
+		translate: 0 calc(-50% - ($labelHeight / 2));
 		scale: 0.75;
 	}
 
