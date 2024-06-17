@@ -48,11 +48,12 @@
 		class:disabled
 		class:loading
 		class:text
+		class:mirror
 		class:scale={!disableScale}
 		class:background={disableScale}
 		class="element"
 	>
-		<span class="content" class:mirror>
+		<span class="content">
 			{#if icon}
 				<Icon {icon} />
 			{:else if children}
