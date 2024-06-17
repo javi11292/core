@@ -2,7 +2,7 @@
 	import { dev } from "$app/environment";
 	import { onNavigate } from "$app/navigation";
 	import type { Snippet } from "svelte";
-	import "./global.scss";
+	import "./layout.scss";
 
 	type Props = { children: Snippet };
 
