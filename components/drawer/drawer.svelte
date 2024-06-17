@@ -33,7 +33,7 @@
 		top: 0;
 		height: 100%;
 		transition: translate 200ms;
-		min-width: 50%;
+		min-width: 20rem;
 		max-width: calc(100% - 5rem);
 
 		&:not(.open) {
