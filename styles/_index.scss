@@ -22,6 +22,12 @@
 	}
 }
 
+@mixin laptop {
+	@media (min-width: 60em) {
+		@content;
+	}
+}
+
 @mixin desktop {
 	@media (min-width: 80em) {
 		@content;
