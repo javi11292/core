@@ -63,7 +63,7 @@
 		<div class="labelSpace {styles.labelSpace}"></div>
 	{/if}
 
-	<div class:with-icon={icon} class={classes(styles.labelContainer, icon && styles.withIcon)}>
+	<div class={classes(styles.labelContainer, icon && styles.withIcon)}>
 		{#if label}
 			<div
 				class="label {classes(
