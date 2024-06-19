@@ -1,3 +1,7 @@
+<script lang="ts" context="module">
+	console.log("LELE");
+</script>
+
 <script lang="ts">
 	import { classes } from "$lib/core/utils";
 	import type { HTMLButtonAttributes } from "svelte/elements";
