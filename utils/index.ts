@@ -17,3 +17,9 @@ export const classes = (...names: (string | undefined | null | false)[]) => {
 
 	return className;
 };
+
+export const dynamic = (callback: () => Promise<{ default: unknown }>) => async () => {
+	const component = await callback();
+
+	return component.default;
+};
