@@ -1,10 +1,9 @@
 <script lang="ts">
 	import type { FocusEventHandler, MouseEventHandler } from "svelte/elements";
-	import Button from "../button/button.svelte";
-	import Icon from "../icon/icon.svelte";
-	import { arrowDown } from "../icons";
-	import Input from "../input/input.svelte";
-	import Tooltip from "../tooltip/tooltip.svelte";
+	import { Button } from "../button";
+	import { Icon, icons } from "../icon";
+	import { Input } from "../input";
+	import { Tooltip } from "../tooltip";
 	import styles from "./select.module.scss";
 	import type { Option } from "./types";
 
@@ -53,7 +52,7 @@
 		{label}
 	>
 		{#snippet icon()}
-			<Icon class={styles.icon} icon={arrowDown} />
+			<Icon class={styles.icon} icon={icons.arrowDown} />
 		{/snippet}
 	</Input>
 

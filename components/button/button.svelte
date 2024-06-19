@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { classes } from "$lib/core/utils";
 	import type { HTMLButtonAttributes } from "svelte/elements";
-	import Icon from "../icon/icon.svelte";
-	import LoadingIcon from "../loading-icon/loading-icon.svelte";
+	import { Icon } from "../icon";
+	import { LoadingIcon } from "../loading-icon";
 	import styles from "./button.module.scss";
 
 	type Props = {
