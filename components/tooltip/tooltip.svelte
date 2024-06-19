@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { classes } from "$lib/core/utils";
 	import type { Snippet } from "svelte";
 	import { cubicInOut } from "svelte/easing";
 	import styles from "./tooltip.module.scss";
@@ -7,9 +8,10 @@
 		show?: boolean;
 		children: Snippet;
 		tooltip: Snippet;
+		class?: string;
 	};
 
-	let { children, tooltip, show }: Props = $props();
+	let { children, tooltip, show, class: className }: Props = $props();
 
 	const appear = (_node: HTMLDivElement) => ({
 		duration: 150,
@@ -21,7 +23,7 @@
 	});
 </script>
 
-<span class={styles.container} role="tooltip">
+<span class={classes(styles.container, className)} role="tooltip">
 	{@render children()}
 
 	{#if show}
