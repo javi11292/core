@@ -6,5 +6,6 @@ export { default as Input } from "./input/input.svelte";
 export { default as Layout } from "./layout/layout.svelte";
 export { default as LoadingIcon } from "./loading-icon/loading-icon.svelte";
 export { default as Modal } from "./modal/modal.svelte";
-export { default as Select, type Option } from "./select/select.svelte";
+export { default as Select } from "./select/select.svelte";
+export type { Option } from "./select/types";
 export { default as Tooltip } from "./tooltip/tooltip.svelte";

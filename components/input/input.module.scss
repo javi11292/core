@@ -1,0 +1,89 @@
+$labelHeight: 1.6rem;
+
+.input {
+	display: grid;
+	transition: all 200ms;
+	border-bottom: 0.1rem solid currentColor;
+	position: relative;
+
+	&:focus-within {
+		border-color: $primaryColor;
+	}
+
+	&:has(.error) {
+		border-color: red;
+	}
+
+	input,
+	textarea {
+		grid-column-start: 1;
+		grid-row-start: 2;
+		padding: 0.25rem 0;
+		width: 100%;
+		transition: all 200ms;
+	}
+}
+
+.icon {
+	grid-column-start: 1;
+	grid-row-start: 2;
+	margin-left: auto;
+	align-self: center;
+}
+
+.withIcon {
+	padding-right: 2rem;
+}
+
+.labelSpace {
+	height: $labelHeight;
+	grid-column-start: 1;
+	grid-row-start: 1;
+}
+
+.labelContainer {
+	pointer-events: none;
+	position: relative;
+	grid-column-start: 1;
+	grid-row-start: 1;
+	grid-row-end: 3;
+	overflow: hidden;
+}
+
+.focusLabel {
+	&:focus-within {
+		.label {
+			@extend .shrink;
+			color: $primaryColor;
+		}
+	}
+}
+
+.label {
+	position: absolute;
+	top: $labelHeight;
+	transform-origin: left;
+	white-space: nowrap;
+	will-change: translate, scale;
+	transition: all 200ms;
+	padding: 0.25rem 0;
+	color: $textColorDisabled;
+}
+
+.shrink:not(.disableShrink) {
+	translate: 0 calc(-50% - ($labelHeight / 2));
+	scale: 0.75;
+}
+
+.disabled {
+	color: $textColorDisabled;
+}
+
+.error {
+	color: red;
+	font-size: 1.2rem;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	translate: 0 100%;
+}

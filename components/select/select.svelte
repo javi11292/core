@@ -1,7 +1,3 @@
-<script lang="ts" context="module">
-	export type Option<T = unknown> = { label?: string; value: T };
-</script>
-
 <script lang="ts">
 	import type { FocusEventHandler, MouseEventHandler } from "svelte/elements";
 	import Button from "../button/button.svelte";
@@ -9,6 +5,8 @@
 	import { arrowDown } from "../icons";
 	import Input from "../input/input.svelte";
 	import Tooltip from "../tooltip/tooltip.svelte";
+	import styles from "./select.module.scss";
+	import type { Option } from "./types";
 
 	type Props = {
 		options: Option[];
@@ -44,50 +42,28 @@
 	};
 </script>
 
-<div class="select">
-	<Tooltip {show}>
-		<Input
-			readonly
-			disableFocusLabel
-			value={selected?.label || ""}
-			onblur={handleBlur}
-			onclick={handleClick}
-			{label}
-		>
-			{#snippet icon()}
-				<Icon icon={arrowDown} />
-			{/snippet}
-		</Input>
-
-		{#snippet tooltip()}
-			<div bind:this={buttons}>
-				{#each options as option}
-					<Button disableScale onclick={handleSelect(option)}>
-						{option.label}
-					</Button>
-				{/each}
-			</div>
+<Tooltip {show}>
+	<Input
+		readonly
+		disableFocusLabel
+		value={selected?.label || ""}
+		onblur={handleBlur}
+		onclick={handleClick}
+		class={styles.input}
+		{label}
+	>
+		{#snippet icon()}
+			<Icon class={styles.icon} icon={arrowDown} />
 		{/snippet}
-	</Tooltip>
-</div>
+	</Input>
 
-<style lang="scss">
-	.select {
-		display: contents;
-
-		:global(.input) {
-			cursor: pointer;
-		}
-
-		:global(.icon) {
-			pointer-events: none;
-		}
-
-		:global(.button) {
-			text-transform: none;
-			border-radius: unset;
-			width: 100%;
-			color: white;
-		}
-	}
-</style>
+	{#snippet tooltip()}
+		<div bind:this={buttons}>
+			{#each options as option}
+				<Button class={styles.button} disableScale onclick={handleSelect(option)}>
+					{option.label}
+				</Button>
+			{/each}
+		</div>
+	{/snippet}
+</Tooltip>

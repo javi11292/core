@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { classes } from "$lib/core/utils";
 	import type { Snippet } from "svelte";
 	import type {
 		FormEventHandler,
@@ -6,6 +7,7 @@
 		HTMLTextareaAttributes,
 	} from "svelte/elements";
 	import { fade } from "svelte/transition";
+	import styles from "./input.module.scss";
 
 	type Props = {
 		regex?: RegExp;
@@ -32,6 +34,7 @@
 		disabled,
 		icon,
 		error,
+		class: className,
 		...props
 	}: InputProps | TextareaProps = $props();
 
@@ -48,14 +51,27 @@
 	};
 </script>
 
-<div class:disabled class:focus-label={!disableFocusLabel} class="input">
+<div
+	class="input {classes(
+		styles.input,
+		className,
+		disabled && styles.disabled,
+		!disableFocusLabel && styles.focusLabel,
+	)}"
+>
 	{#if label}
-		<div class="label-space"></div>
+		<div class={styles.labelSpace}></div>
 	{/if}
 
-	<div class:with-icon={icon} class="label-container">
+	<div class:with-icon={icon} class={classes(styles.labelContainer, icon && styles.withIcon)}>
 		{#if label}
-			<div class:shrink={value || disableGrow} class:disable-shrink={disableShrink} class="label">
+			<div
+				class={classes(
+					styles.label,
+					(value || disableGrow) && styles.shrink,
+					disableShrink && styles.disableShrink,
+				)}
+			>
 				{label}
 			</div>
 		{/if}
@@ -64,7 +80,7 @@
 	{#if props.rows !== undefined}
 		<textarea
 			{...props}
-			class:disabled
+			class={classes(disabled && styles.disabled)}
 			oninput={handleInput}
 			aria-label={label}
 			value={value ?? ""}
@@ -73,7 +89,7 @@
 	{:else}
 		<input
 			{...props}
-			class:disabled
+			class={classes(disabled && styles.disabled)}
 			oninput={handleInput}
 			aria-label={label}
 			value={value ?? ""}
@@ -82,106 +98,14 @@
 	{/if}
 
 	{#if icon}
-		<div class="icon">
+		<div class={styles.icon}>
 			{@render icon()}
 		</div>
 	{/if}
 
 	{#if error}
-		<span in:fade={{ duration: 200 }} class="error">
+		<span in:fade={{ duration: 200 }} class={styles.error}>
 			{error}
 		</span>
 	{/if}
 </div>
-
-<style lang="scss">
-	$labelHeight: 1.6rem;
-
-	input,
-	textarea {
-		grid-column-start: 1;
-		grid-row-start: 2;
-		padding: 0.25rem 0;
-		width: 100%;
-		transition: all 200ms;
-	}
-
-	.input {
-		display: grid;
-		transition: all 200ms;
-		border-bottom: 0.1rem solid currentColor;
-		position: relative;
-
-		&:focus-within {
-			border-color: $primaryColor;
-		}
-
-		&:has(.error) {
-			border-color: red;
-		}
-	}
-
-	.icon {
-		grid-column-start: 1;
-		grid-row-start: 2;
-		margin-left: auto;
-		align-self: center;
-	}
-
-	.with-icon {
-		padding-right: 2rem;
-	}
-
-	.label-space {
-		height: $labelHeight;
-		grid-column-start: 1;
-		grid-row-start: 1;
-	}
-
-	.label-container {
-		pointer-events: none;
-		position: relative;
-		grid-column-start: 1;
-		grid-row-start: 1;
-		grid-row-end: 3;
-		overflow: hidden;
-	}
-
-	.focus-label {
-		&:focus-within {
-			.label {
-				@extend .shrink;
-				color: $primaryColor;
-			}
-		}
-	}
-
-	.label {
-		position: absolute;
-		top: $labelHeight;
-		transform-origin: left;
-		white-space: nowrap;
-		will-change: translate, scale;
-		transition: all 200ms;
-		padding: 0.25rem 0;
-		color: $textColorDisabled;
-	}
-
-	.shrink:not(.disable-shrink) {
-		translate: 0 calc(-50% - ($labelHeight / 2));
-		scale: 0.75;
-	}
-
-	.disabled {
-		color: $textColorDisabled;
-	}
-
-	.error {
-		color: red;
-		font-size: 1.2rem;
-		position: absolute;
-		right: 0;
-		bottom: 0;
-		translate: 0 100%;
-	}
-</style>
