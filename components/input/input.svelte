@@ -60,17 +60,17 @@
 	)}"
 >
 	{#if label}
-		<div class={styles.labelSpace}></div>
+		<div class="labelSpace {styles.labelSpace}"></div>
 	{/if}
 
 	<div class:with-icon={icon} class={classes(styles.labelContainer, icon && styles.withIcon)}>
 		{#if label}
 			<div
-				class={classes(
+				class="label {classes(
 					styles.label,
-					(value || disableGrow) && styles.shrink,
+					(value || disableGrow) && `shrink ${styles.shrink}`,
 					disableShrink && styles.disableShrink,
-				)}
+				)}"
 			>
 				{label}
 			</div>
@@ -104,7 +104,7 @@
 	{/if}
 
 	{#if error}
-		<span in:fade={{ duration: 200 }} class={styles.error}>
+		<span in:fade={{ duration: 200 }} class="error {styles.error}">
 			{error}
 		</span>
 	{/if}
