@@ -7,6 +7,6 @@
 	let { icon, class: className }: Props = $props();
 </script>
 
-<svg viewBox="0 0 24 24" fill="currentColor" class={classes(styles.icon, className)}>
+<svg viewBox="0 0 24 24" fill="currentColor" class="icon {classes(styles.icon, className)}">
 	<use href={`${icon}#icon`} />
 </svg>

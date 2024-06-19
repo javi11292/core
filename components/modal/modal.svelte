@@ -1,6 +1,8 @@
 <script lang="ts">
+	import { classes } from "$lib/core/utils";
 	import type { Snippet } from "svelte";
 	import type { AnimationEventHandler } from "svelte/elements";
+	import styles from "./modal.module.scss";
 
 	type Props = { open?: boolean; children: Snippet };
 
@@ -32,7 +34,7 @@
 	<dialog
 		bind:this={dialog}
 		onclick={handleClick}
-		class:reverse={!open && keepOpen}
+		class={classes(styles.dialog, !open && keepOpen && styles.reverse)}
 		role="presentation"
 		onanimationstart={handleAnimation(true)}
 		onanimationend={handleAnimation(false)}
@@ -42,85 +44,3 @@
 		</div>
 	</dialog>
 {/if}
-
-<style lang="scss">
-	::backdrop {
-		background: rgba(0, 0, 0, 0.8);
-	}
-
-	.reverse {
-		animation: disappear 200ms forwards;
-	}
-
-	.reverse::backdrop {
-		animation: fadeOut 200ms forwards;
-	}
-
-	dialog {
-		animation: appear 200ms;
-		border: none;
-		border-radius: 0.4rem;
-		box-shadow: 0 0.4rem 0.6rem;
-		max-width: 90vw;
-		max-height: 90vh;
-		padding: 0;
-		overflow: hidden;
-		margin: auto;
-
-		div {
-			overflow: auto;
-		}
-	}
-
-	dialog::backdrop {
-		animation: fadeIn 200ms;
-	}
-
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
-		}
-
-		to {
-			opacity: 1;
-		}
-	}
-
-	@keyframes fadeOut {
-		from {
-			opacity: 1;
-		}
-
-		to {
-			opacity: 0;
-		}
-	}
-
-	@keyframes appear {
-		from {
-			opacity: 0;
-			scale: 0;
-			display: none;
-		}
-
-		to {
-			opacity: 1;
-			scale: 1;
-			display: block;
-		}
-	}
-
-	@keyframes disappear {
-		from {
-			opacity: 1;
-			scale: 1;
-			display: block;
-		}
-
-		to {
-			opacity: 0;
-			scale: 0;
-			display: none;
-		}
-	}
-</style>

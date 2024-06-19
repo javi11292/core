@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
 	import { cubicInOut } from "svelte/easing";
+	import styles from "./tooltip.module.scss";
 
 	type Props = {
 		show?: boolean;
@@ -20,24 +21,12 @@
 	});
 </script>
 
-<span class="container" role="tooltip">
+<span class={styles.container} role="tooltip">
 	{@render children()}
 
 	{#if show}
-		<div transition:appear class="tooltip">
+		<div transition:appear class={styles.tooltip}>
 			{@render tooltip()}
 		</div>
 	{/if}
 </span>
-
-<style lang="scss">
-	.container {
-		position: relative;
-		z-index: 1;
-	}
-
-	.tooltip {
-		position: absolute;
-		width: 100%;
-	}
-</style>
