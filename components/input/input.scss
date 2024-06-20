@@ -70,7 +70,7 @@ $labelHeight: 1.6rem;
 	color: $textColorDisabled;
 }
 
-.shrink:not(.disableShrink) {
+.shrink {
 	translate: 0 calc(-50% - ($labelHeight / 2));
 	scale: 0.75;
 }

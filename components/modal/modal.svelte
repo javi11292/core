@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { classes } from "$lib/core/utils";
 	import type { Snippet } from "svelte";
 	import type { AnimationEventHandler } from "svelte/elements";
-	import styles from "./modal.module.scss";
 
 	type Props = { open?: boolean; children: Snippet };
 
@@ -34,7 +32,8 @@
 	<dialog
 		bind:this={dialog}
 		onclick={handleClick}
-		class={classes(styles.dialog, !open && keepOpen && styles.reverse)}
+		class="dialog"
+		class:reverse={!open}
 		role="presentation"
 		onanimationstart={handleAnimation(true)}
 		onanimationend={handleAnimation(false)}
@@ -44,3 +43,7 @@
 		</div>
 	</dialog>
 {/if}
+
+<style>
+	@import "./modal.scss";
+</style>

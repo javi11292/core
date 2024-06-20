@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
 	import { fade } from "svelte/transition";
-	import styles from "./drawer.module.scss";
 
 	let { open, onclose, children }: { open?: boolean; children: Snippet; onclose: () => void } =
 		$props();
@@ -11,11 +10,15 @@
 	<div
 		role="presentation"
 		onclick={onclose}
-		class={styles.backdrop}
+		class="backdrop"
 		transition:fade={{ duration: 200 }}
 	></div>
 {/if}
 
-<section class={styles.section} class:open>
+<section class="section" class:open>
 	{@render children()}
 </section>
+
+<style>
+	@import "./drawer.scss";
+</style>

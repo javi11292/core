@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { classes } from "$lib/core/utils";
 	import type { Snippet } from "svelte";
 	import { cubicInOut } from "svelte/easing";
-	import styles from "./tooltip.module.scss";
 
 	type Props = {
 		show?: boolean;
@@ -23,12 +21,16 @@
 	});
 </script>
 
-<span class={classes(styles.container, className)} role="tooltip">
+<span class="tooltip" role="tooltip">
 	{@render children()}
 
 	{#if show}
-		<div transition:appear class={styles.tooltip}>
+		<div transition:appear class="content">
 			{@render tooltip()}
 		</div>
 	{/if}
 </span>
+
+<style>
+	@import "./tooltip.scss";
+</style>

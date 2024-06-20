@@ -1,12 +1,13 @@
 <script lang="ts">
-	import { classes } from "$lib/core/utils";
-	import styles from "./icon.module.scss";
-
 	type Props = { icon: string; class?: string };
 
-	let { icon, class: className }: Props = $props();
+	let { icon }: Props = $props();
 </script>
 
-<svg viewBox="0 0 24 24" fill="currentColor" class="icon {classes(styles.icon, className)}">
+<svg viewBox="0 0 24 24" fill="currentColor" class="icon">
 	<use href={`${icon}#icon`} />
 </svg>
+
+<style>
+	@import "./icon.scss";
+</style>

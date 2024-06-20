@@ -1,9 +1,7 @@
 <script lang="ts">
-	import { classes } from "$lib/core/utils";
 	import type { HTMLButtonAttributes } from "svelte/elements";
 	import { Icon } from "../icon";
 	import { LoadingIcon } from "../loading-icon";
-	import styles from "./button.module.scss";
 
 	type Props = {
 		element?: string;
@@ -28,7 +26,6 @@
 		text,
 		loading,
 		title,
-		class: className,
 		...props
 	}: Props = $props();
 
@@ -45,26 +42,18 @@
 	});
 </script>
 
-<svelte:element
-	this={href ? "a" : element}
-	{title}
-	{...elementProps}
-	{...props}
-	class="button {classes(styles.button, className)}"
->
+<svelte:element this={href ? "a" : element} {title} {...elementProps} {...props} class="button">
 	<div
-		class="element {classes(
-			styles.element,
-			icon && styles.icon,
-			disabled && styles.disabled,
-			loading && styles.loading,
-			text && styles.text,
-			mirror && styles.mirror,
-			!disableScale && styles.scale,
-			disableScale && styles.background,
-		)}"
+		class="element"
+		class:icon
+		class:disabled
+		class:loading
+		class:text
+		class:mirror
+		class:scale={!disableScale}
+		class:background={disableScale}
 	>
-		<span class="content {styles.content}">
+		<span class="content">
 			{#if icon}
 				<Icon {icon} />
 			{:else if children}
@@ -73,9 +62,13 @@
 		</span>
 
 		{#if loading}
-			<div class={styles.loadingIcon}>
+			<div class="loadingIcon">
 				<LoadingIcon />
 			</div>
 		{/if}
 	</div>
 </svelte:element>
+
+<style>
+	@import "./button.scss";
+</style>

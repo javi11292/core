@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { classes } from "$lib/core/utils";
 	import type { Snippet } from "svelte";
 	import type {
 		FormEventHandler,
@@ -7,7 +6,6 @@
 		HTMLTextareaAttributes,
 	} from "svelte/elements";
 	import { fade } from "svelte/transition";
-	import styles from "./input.module.scss";
 
 	type Props = {
 		regex?: RegExp;
@@ -51,27 +49,14 @@
 	};
 </script>
 
-<div
-	class="input {classes(
-		styles.input,
-		className,
-		disabled && styles.disabled,
-		!disableFocusLabel && styles.focusLabel,
-	)}"
->
+<div class="input" class:disabled class:focusLabel={!disableFocusLabel}>
 	{#if label}
-		<div class="labelSpace {styles.labelSpace}"></div>
+		<div class="labelSpace"></div>
 	{/if}
 
-	<div class={classes(styles.labelContainer, icon && styles.withIcon)}>
+	<div class="labelContainer" class:withIcon={icon}>
 		{#if label}
-			<div
-				class="label {classes(
-					styles.label,
-					(value || disableGrow) && `shrink ${styles.shrink}`,
-					disableShrink && styles.disableShrink,
-				)}"
-			>
+			<div class="label" class:shrink={(value || disableGrow) && !disableShrink}>
 				{label}
 			</div>
 		{/if}
@@ -80,7 +65,7 @@
 	{#if props.rows !== undefined}
 		<textarea
 			{...props}
-			class={classes(disabled && styles.disabled)}
+			class:disabled
 			oninput={handleInput}
 			aria-label={label}
 			value={value ?? ""}
@@ -89,7 +74,7 @@
 	{:else}
 		<input
 			{...props}
-			class={classes(disabled && styles.disabled)}
+			class:disabled
 			oninput={handleInput}
 			aria-label={label}
 			value={value ?? ""}
@@ -98,14 +83,18 @@
 	{/if}
 
 	{#if icon}
-		<div class={styles.icon}>
+		<div class="icon">
 			{@render icon()}
 		</div>
 	{/if}
 
 	{#if error}
-		<span in:fade={{ duration: 200 }} class="error {styles.error}">
+		<span in:fade={{ duration: 200 }} class="error">
 			{error}
 		</span>
 	{/if}
 </div>
+
+<style>
+	@import "./input.scss";
+</style>

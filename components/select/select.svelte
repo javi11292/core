@@ -4,7 +4,6 @@
 	import { Icon, icons } from "../icon";
 	import { Input } from "../input";
 	import { Tooltip } from "../tooltip";
-	import styles from "./select.module.scss";
 	import type { Option } from "./types";
 
 	type Props = {
@@ -41,28 +40,33 @@
 	};
 </script>
 
-<Tooltip class="select" {show}>
-	<Input
-		readonly
-		disableFocusLabel
-		value={selected?.label || ""}
-		onblur={handleBlur}
-		onclick={handleClick}
-		class={styles.input}
-		{label}
-	>
-		{#snippet icon()}
-			<Icon class={styles.icon} icon={icons.arrowDown} />
-		{/snippet}
-	</Input>
+<div>
+	<Tooltip class="select" {show}>
+		<Input
+			readonly
+			disableFocusLabel
+			value={selected?.label || ""}
+			onblur={handleBlur}
+			onclick={handleClick}
+			{label}
+		>
+			{#snippet icon()}
+				<Icon icon={icons.arrowDown} />
+			{/snippet}
+		</Input>
 
-	{#snippet tooltip()}
-		<div bind:this={buttons}>
-			{#each options as option}
-				<Button class={styles.button} disableScale onclick={handleSelect(option)}>
-					{option.label}
-				</Button>
-			{/each}
-		</div>
-	{/snippet}
-</Tooltip>
+		{#snippet tooltip()}
+			<div bind:this={buttons}>
+				{#each options as option}
+					<Button disableScale onclick={handleSelect(option)}>
+						{option.label}
+					</Button>
+				{/each}
+			</div>
+		{/snippet}
+	</Tooltip>
+</div>
+
+<style>
+	@import "./select.scss";
+</style>
