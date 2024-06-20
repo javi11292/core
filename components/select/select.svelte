@@ -40,8 +40,8 @@
 	};
 </script>
 
-<div>
-	<Tooltip class="select" {show}>
+<div class="select">
+	<Tooltip {show}>
 		<Input
 			readonly
 			disableFocusLabel
