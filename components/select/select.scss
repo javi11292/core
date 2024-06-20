@@ -1,4 +1,6 @@
 div {
+	display: contents;
+
 	:global(.input) {
 		cursor: pointer;
 	}
