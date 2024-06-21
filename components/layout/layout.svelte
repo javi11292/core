@@ -11,7 +11,7 @@
 	$effect(() => {
 		if (!dev && "serviceWorker" in navigator) {
 			navigator.serviceWorker.register("/service-worker.js").then((worker) => {
-				console.log("WORKER 3");
+				console.log("WORKER 4");
 				if (!navigator.serviceWorker.controller) {
 					console.log("FIRSTO TIMO");
 					return;
@@ -19,7 +19,7 @@
 
 				const { installing } = worker;
 
-				console.log("INStALLING", installing);
+				console.log("INSTALLING", installing);
 
 				installing?.addEventListener("statechange", () => {
 					console.log("CHANGE", installing.state);
