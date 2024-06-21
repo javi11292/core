@@ -19,6 +19,8 @@
 
 				const { installing } = worker;
 
+				console.log("INStALLING");
+
 				installing?.addEventListener("statechange", () => {
 					console.log("CHANGE", installing.state);
 					if (installing.state === "installed") {
