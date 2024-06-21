@@ -11,12 +11,13 @@
 	$effect(() => {
 		if (!dev && "serviceWorker" in navigator) {
 			navigator.serviceWorker.register("/service-worker.js").then((worker) => {
+				const reload = navigator.serviceWorker.controller;
+
 				worker.addEventListener("updatefound", () => {
-					console.log("ONE TEST");
 					const { installing } = worker;
 
 					installing?.addEventListener("statechange", () => {
-						if (installing.state === "installed") {
+						if (installing.state === "installed" && reload) {
 							location.reload();
 						}
 					});
