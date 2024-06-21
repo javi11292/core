@@ -12,6 +12,7 @@
 		if (!dev && "serviceWorker" in navigator) {
 			navigator.serviceWorker.register("/service-worker.js").then((worker) => {
 				worker.addEventListener("updatefound", () => {
+					console.log("ONE TEST");
 					const { installing } = worker;
 
 					installing?.addEventListener("statechange", () => {
