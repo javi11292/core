@@ -11,9 +11,9 @@
 	$effect(() => {
 		if (!dev && "serviceWorker" in navigator) {
 			navigator.serviceWorker.register("/service-worker.js").then((worker) => {
-				console.log("WORKER 2");
-				if (worker.active || !navigator.serviceWorker.controller) {
-					console.log("ACTIVE");
+				console.log("WORKER 3");
+				if (!navigator.serviceWorker.controller) {
+					console.log("FIRSTO TIMO");
 					return;
 				}
 
