@@ -10,7 +10,21 @@
 
 	$effect(() => {
 		if (!dev && "serviceWorker" in navigator) {
-			navigator.serviceWorker.register("/service-worker.js");
+			navigator.serviceWorker.register("/service-worker.js").then((worker) => {
+				if (worker.active) {
+					console.log("ACTIVE");
+					return;
+				}
+
+				const { installing } = worker;
+
+				installing?.addEventListener("statechange", () => {
+					console.log("CHANGE", installing.state);
+					if (installing.state === "installed") {
+						location.reload();
+					}
+				});
+			});
 		}
 	});
 
