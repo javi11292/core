@@ -11,10 +11,6 @@
 	$effect(() => {
 		if (!dev && "serviceWorker" in navigator) {
 			navigator.serviceWorker.register("/service-worker.js").then((worker) => {
-				if (!navigator.serviceWorker.controller) {
-					return;
-				}
-
 				worker.addEventListener("updatefound", () => {
 					const { installing } = worker;
 
