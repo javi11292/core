@@ -17,9 +17,13 @@
 					return;
 				}
 
-				const { installing } = worker;
+				worker.addEventListener("updatefound", () => {
+					console.log("FOUND YOU");
+				});
 
-				console.log("INSTALLING", installing);
+				const { installing, active } = worker;
+
+				console.log("INSTALLING", active, installing);
 
 				installing?.addEventListener("statechange", () => {
 					console.log("CHANGE", installing.state);
