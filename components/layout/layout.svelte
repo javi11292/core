@@ -19,7 +19,7 @@
 
 				const { installing } = worker;
 
-				console.log("INStALLING");
+				console.log("INStALLING", installing);
 
 				installing?.addEventListener("statechange", () => {
 					console.log("CHANGE", installing.state);
