@@ -49,17 +49,16 @@
 		class:disabled
 		class:loading
 		class:text
-		class:mirror
 		class:scale={!disableScale}
 		class:background={disableScale}
 	>
-		<span class="content">
+		<div class="content" class:mirror>
 			{#if icon}
 				<Icon {icon} />
 			{:else if children}
 				{@render children()}
 			{/if}
-		</span>
+		</div>
 
 		{#if loading}
 			<div class="loadingIcon">
