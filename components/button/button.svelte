@@ -53,11 +53,13 @@
 		class:background={disableScale}
 	>
 		<div class="content" class:mirror>
-			{#if icon}
-				<Icon {icon} />
-			{:else if children}
-				{@render children()}
-			{/if}
+			<span>
+				{#if icon}
+					<Icon {icon} />
+				{:else if children}
+					{@render children()}
+				{/if}
+			</span>
 		</div>
 
 		{#if loading}

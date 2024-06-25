@@ -62,4 +62,8 @@
 
 .content {
 	transition: opacity 200ms;
+
+	span {
+		vertical-align: middle;
+	}
 }
