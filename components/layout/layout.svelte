@@ -14,13 +14,9 @@
 				const reload = navigator.serviceWorker.controller;
 
 				worker.addEventListener("updatefound", () => {
-					const { installing } = worker;
-
-					installing?.addEventListener("statechange", () => {
-						if (installing.state === "installed" && reload) {
-							location.reload();
-						}
-					});
+					if (reload) {
+						location.reload();
+					}
 				});
 			});
 		}
