@@ -13,8 +13,9 @@
 			navigator.serviceWorker.register("/service-worker.js").then((worker) => {
 				const reload = navigator.serviceWorker.controller;
 
-				worker.addEventListener("updatefound", () => {
+				worker.addEventListener("updatefound", async () => {
 					if (reload) {
+						await caches.delete("Svelte");
 						location.reload();
 					}
 				});
