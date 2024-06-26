@@ -1,0 +1,15 @@
+.web {
+	display: none;
+
+	@include laptop {
+		display: contents;
+	}
+}
+
+.app {
+	display: contents;
+
+	@include laptop {
+		display: none;
+	}
+}
