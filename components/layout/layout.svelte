@@ -12,10 +12,8 @@
 		if (!dev && "serviceWorker" in navigator) {
 			navigator.serviceWorker.register("/service-worker.js").then((registration) => {
 				const reload = navigator.serviceWorker.controller;
-				console.log("TEST 1", reload);
 
 				registration.addEventListener("updatefound", async () => {
-					console.log("TEST 2");
 					await caches.delete("Svelte");
 
 					if (reload) {
