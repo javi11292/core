@@ -7,11 +7,10 @@
 
 	type Props = {
 		elements: Element[];
-		disableHover?: boolean;
 		right?: boolean;
 	};
 
-	let { elements, disableHover, right, ...props }: Props & ComponentProps<Button> = $props();
+	let { elements, right, ...props }: Props & ComponentProps<Button> = $props();
 
 	let show = $state(false);
 
@@ -34,19 +33,9 @@
 	};
 </script>
 
-<div
-	class="menu"
-	role="presentation"
-	class:right
-	onmouseleave={disableHover ? undefined : () => (show = false)}
->
+<div class="menu" role="presentation" class:right>
 	<Tooltip {show}>
-		<Button
-			onclick={() => (show = !show)}
-			onmouseenter={disableHover ? undefined : () => (show = true)}
-			onblurcapture={handleBlur}
-			{...props}
-		/>
+		<Button onclick={() => (show = !show)} onblurcapture={handleBlur} {...props} />
 
 		{#snippet tooltip()}
 			<div class="buttons" bind:this={buttons}>

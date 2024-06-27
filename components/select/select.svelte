@@ -20,7 +20,6 @@
 <div class="select">
 	<Menu
 		disableScale
-		disableHover
 		disableBackground
 		elements={options.map((option) => ({ label: option.label, onclick: handleSelect(option) }))}
 	>
