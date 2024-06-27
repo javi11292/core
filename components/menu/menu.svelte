@@ -9,11 +9,10 @@
 		elements: Element[];
 		children: Snippet;
 		disableScale?: boolean;
-		disableBackground?: boolean;
 		disableHover?: boolean;
 	};
 
-	let { elements, children, disableScale, disableBackground, disableHover }: Props = $props();
+	let { elements, children, disableScale, disableHover }: Props = $props();
 
 	let show = $state(false);
 
@@ -45,8 +44,9 @@
 	<Tooltip {show}>
 		<Button
 			{disableScale}
-			{disableBackground}
+			disableBackground={disableHover}
 			onclick={() => (show = true)}
+			onmouseenter={disableHover ? undefined : () => (show = true)}
 			onblurcapture={handleBlur}
 		>
 			{@render children()}
