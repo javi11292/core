@@ -17,9 +17,9 @@
 
 	const handleClick =
 		(callback?: (typeof elements)[number]["onclick"]): MouseEventHandler<HTMLButtonElement> =>
-		(event) => {
+		async (event) => {
+			await callback?.(event);
 			show = false;
-			callback?.(event);
 		};
 
 	let buttons: HTMLElement;
@@ -42,7 +42,7 @@
 >
 	<Tooltip {show}>
 		<Button
-			onclick={() => (show = true)}
+			onclick={() => (show = !show)}
 			onmouseenter={disableHover ? undefined : () => (show = true)}
 			onblurcapture={handleBlur}
 			{...props}

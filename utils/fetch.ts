@@ -37,13 +37,13 @@ export const get = (url: string, init?: RequestInit) => {
 	return request(url, init);
 };
 
-export const post = (url: string, body: object, init?: RequestInit) => {
+export const post = (url: string, body?: object, init?: RequestInit) => {
 	return request(url, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify(body),
+		body: body && JSON.stringify(body),
 		...init,
 	});
 };

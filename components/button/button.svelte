@@ -20,7 +20,6 @@
 		disableScale,
 		disableBackground,
 		children,
-		onclick,
 		disabled,
 		mirror,
 		icon,
@@ -33,14 +32,14 @@
 
 	let elementProps = $derived.by(() => {
 		if (href) {
-			return { href, disabled: disabled || loading };
+			return { disabled: disabled || loading, href };
 		}
 
 		if (element === "button") {
-			return { onclick, disabled: disabled || loading, type };
+			return { disabled: disabled || loading, type };
 		}
 
-		return { role: "button", tabindex: 0, onclick };
+		return { role: "button", tabindex: 0 };
 	});
 </script>
 

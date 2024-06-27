@@ -99,3 +99,15 @@ export const setSession = async (id: number, { cookies, platform }: Event) => {
 		data: { session: refreshToken },
 	});
 };
+
+export const deleteSession = async ({ platform, cookies }: Event) => {
+	const { id } = await getSession({ platform, cookies });
+
+	await prisma(platform).user.update({
+		where: { id },
+		data: { session: null },
+	});
+
+	cookies.delete(REFRESH_TOKEN, { path: "/" });
+	cookies.delete(ACCESS_TOKEN, { path: "/" });
+};
