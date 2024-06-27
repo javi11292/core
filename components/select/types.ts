@@ -1,1 +1,1 @@
-export type Option<T = unknown> = { label?: string; value: T };
+export type Option = { label: string; value: unknown };

@@ -32,7 +32,6 @@
 		disabled,
 		icon,
 		error,
-		class: className,
 		...props
 	}: InputProps | TextareaProps = $props();
 

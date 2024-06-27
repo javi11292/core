@@ -6,6 +6,7 @@
 	type Props = {
 		element?: string;
 		disableScale?: boolean;
+		disableBackground?: boolean;
 		loading?: boolean;
 		mirror?: boolean;
 		icon?: string;
@@ -17,6 +18,7 @@
 		element = "button",
 		type = "button",
 		disableScale,
+		disableBackground,
 		children,
 		onclick,
 		disabled,
@@ -50,7 +52,7 @@
 		class:loading
 		class:text
 		class:scale={!disableScale}
-		class:background={disableScale}
+		class:background={disableScale && !disableBackground}
 	>
 		<div class="content" class:mirror>
 			<span>

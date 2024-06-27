@@ -6,10 +6,9 @@
 		show?: boolean;
 		children: Snippet;
 		tooltip: Snippet;
-		class?: string;
 	};
 
-	let { children, tooltip, show, class: className }: Props = $props();
+	let { children, tooltip, show }: Props = $props();
 
 	const appear = (_node: HTMLDivElement) => ({
 		duration: 150,

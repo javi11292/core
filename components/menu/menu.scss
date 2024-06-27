@@ -1,0 +1,14 @@
+div {
+	display: contents;
+
+	:global(.button) {
+		text-transform: none;
+		border-radius: unset;
+		width: 100%;
+		color: white;
+
+		:global(.element) {
+			box-shadow: none;
+		}
+	}
+}

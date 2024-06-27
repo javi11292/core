@@ -9,14 +9,13 @@ div {
 		pointer-events: none;
 	}
 
-	:global(.button) {
-		text-transform: none;
-		border-radius: unset;
-		width: 100%;
-		color: white;
+	:global(.tooltip) {
+		> :global(.button) {
+			all: unset;
 
-		:global(.element) {
-			box-shadow: none;
+			:global(.element) {
+				all: unset;
+			}
 		}
 	}
 }
