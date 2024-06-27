@@ -21,6 +21,7 @@
 	<Menu
 		disableScale
 		disableHover
+		disableBackground
 		elements={options.map((option) => ({ label: option.label, onclick: handleSelect(option) }))}
 	>
 		<Input readonly disableFocusLabel value={selected?.label || ""} {label}>

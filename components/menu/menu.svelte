@@ -42,7 +42,6 @@
 >
 	<Tooltip {show}>
 		<Button
-			disableBackground={disableHover}
 			onclick={() => (show = true)}
 			onmouseenter={disableHover ? undefined : () => (show = true)}
 			onblurcapture={handleBlur}
