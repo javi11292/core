@@ -10,17 +10,7 @@
 
 	$effect(() => {
 		if (!dev && "serviceWorker" in navigator) {
-			navigator.serviceWorker.register("/service-worker.js").then((registration) => {
-				const reload = navigator.serviceWorker.controller;
-
-				registration.addEventListener("updatefound", async () => {
-					await caches.delete("Svelte");
-
-					if (reload) {
-						location.reload();
-					}
-				});
-			});
+			navigator.serviceWorker.register("/service-worker.js");
 		}
 	});
 
