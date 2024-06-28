@@ -18,7 +18,7 @@ export class NetworkError<T extends { message: string }> extends Error {
 	}
 }
 
-export const request = async (url: string, init: RequestInit = {}) => {
+export const request = async <T = unknown>(url: string, init: RequestInit = {}): Promise<T> => {
 	if (typeof window !== "undefined") {
 		init.credentials = "include";
 	}
@@ -33,12 +33,12 @@ export const request = async (url: string, init: RequestInit = {}) => {
 	return data;
 };
 
-export const get = (url: string, init?: RequestInit) => {
-	return request(url, init);
+export const get = <T = unknown>(url: string, init?: RequestInit) => {
+	return request<T>(url, init);
 };
 
-export const post = (url: string, body?: object, init?: RequestInit) => {
-	return request(url, {
+export const post = <T = unknown>(url: string, body?: object, init?: RequestInit) => {
+	return request<T>(url, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
