@@ -8,9 +8,10 @@
 		options: Option[];
 		label?: string;
 		selected?: Option;
+		name?: string;
 	};
 
-	let { options, label, selected = $bindable() }: Props = $props();
+	let { options, label, name, selected = $bindable() }: Props = $props();
 
 	const handleSelect = (option: Option) => () => {
 		selected = option;
@@ -18,6 +19,10 @@
 </script>
 
 <div class="select">
+	{#if name}
+		<input {name} hidden value={selected?.value} />
+	{/if}
+
 	<Menu
 		disableScale
 		disableBackground
