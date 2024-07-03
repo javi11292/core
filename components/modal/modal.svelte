@@ -34,7 +34,7 @@
 		onclick={handleClick}
 		class="dialog"
 		class:reverse={!open}
-		role="presentation"
+		role="none"
 		onanimationstart={handleAnimation(true)}
 		onanimationend={handleAnimation(false)}
 	>

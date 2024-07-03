@@ -33,7 +33,7 @@
 	};
 </script>
 
-<div class="menu" role="presentation" class:right>
+<div class="menu" role="none" class:right>
 	<Tooltip {show}>
 		<Button onclick={() => (show = !show)} onblurcapture={handleBlur} {...props} />
 

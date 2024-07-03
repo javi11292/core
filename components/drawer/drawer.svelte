@@ -7,12 +7,7 @@
 </script>
 
 {#if open}
-	<div
-		role="presentation"
-		onclick={onclose}
-		class="backdrop"
-		transition:fade={{ duration: 200 }}
-	></div>
+	<div role="none" onclick={onclose} class="backdrop" transition:fade={{ duration: 200 }}></div>
 {/if}
 
 <section class="section" class:open>
