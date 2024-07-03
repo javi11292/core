@@ -12,6 +12,7 @@
 
 	> div {
 		overflow: auto;
+		position: relative;
 	}
 }
 
@@ -75,4 +76,10 @@
 		scale: 0;
 		display: none;
 	}
+}
+
+.close {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
 }
