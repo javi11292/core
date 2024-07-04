@@ -8,13 +8,13 @@ const parseResponse = async (response: Response) => {
 	}
 };
 
-export class NetworkError<T extends { message: string }> extends Error {
-	error: T;
+export class NetworkError extends Error {
+	data: App.Error;
 
-	constructor(error: T) {
+	constructor(error: App.Error) {
 		super(error.message);
 		this.name = "NetworkError";
-		this.error = error;
+		this.data = error;
 	}
 }
 
