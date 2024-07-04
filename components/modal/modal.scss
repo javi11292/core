@@ -14,6 +14,8 @@
 	> div {
 		overflow: auto;
 		position: relative;
+		max-width: inherit;
+		max-height: inherit;
 	}
 }
 
