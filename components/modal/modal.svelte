@@ -8,14 +8,19 @@
 
 	let { open = $bindable(false), children, closeButton }: Props = $props();
 
+	let dialog = $state<HTMLDialogElement>();
+	let keepOpen = $state(false);
+
 	const handleClick = (event: Event) => {
 		if (event.target === dialog) {
 			open = false;
 		}
 	};
 
-	let dialog = $state<HTMLDialogElement>();
-	let keepOpen = $state(false);
+	const handleCancel = (event: Event) => {
+		event.preventDefault();
+		open = false;
+	};
 
 	const handleAnimation =
 		(start: boolean): AnimationEventHandler<HTMLDialogElement> =>
@@ -34,6 +39,7 @@
 	<dialog
 		bind:this={dialog}
 		onclick={handleClick}
+		oncancel={handleCancel}
 		class="dialog"
 		class:reverse={!open}
 		role="none"
