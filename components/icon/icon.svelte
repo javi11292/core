@@ -1,11 +1,22 @@
 <script lang="ts">
-	type Props = { icon: string; class?: string };
+	type Icons =
+		| "add"
+		| "arrow-down"
+		| "arrow-right"
+		| "cart"
+		| "close"
+		| "delete"
+		| "menu"
+		| "person"
+		| "remove";
+
+	type Props = { icon: Icons; class?: string };
 
 	let { icon }: Props = $props();
 </script>
 
 <svg viewBox="0 0 24 24" fill="currentColor" class="icon">
-	<use href={`${icon}#icon`} />
+	<use href={`/assets/icons/${icon}.svg#icon`} />
 </svg>
 
 <style>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { ComponentProps } from "svelte";
 	import type { HTMLButtonAttributes } from "svelte/elements";
 	import { Icon } from "../icon";
 	import { LoadingIcon } from "../loading-icon";
@@ -9,7 +10,7 @@
 		disableBackground?: boolean;
 		loading?: boolean;
 		mirror?: boolean;
-		icon?: string;
+		icon?: ComponentProps<Icon>["icon"];
 		href?: string;
 		text?: boolean;
 	} & HTMLButtonAttributes;

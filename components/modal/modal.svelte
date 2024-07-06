@@ -2,7 +2,6 @@
 	import type { Snippet } from "svelte";
 	import type { AnimationEventHandler } from "svelte/elements";
 	import { Button } from "../button";
-	import { icons } from "../icon";
 
 	type Props = { open?: boolean; children: Snippet; closeButton?: boolean };
 
@@ -50,7 +49,7 @@
 			{@render children()}
 			{#if closeButton}
 				<div class="close">
-					<Button text icon={icons.close} onclick={() => (open = false)} />
+					<Button text icon="close" onclick={() => (open = false)} />
 				</div>
 			{/if}
 		</div>
