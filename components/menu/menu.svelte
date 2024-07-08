@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ComponentProps } from "svelte";
+	import type { ComponentProps, Snippet } from "svelte";
 	import type { FocusEventHandler, MouseEventHandler } from "svelte/elements";
 	import { Button } from "../button";
 	import { Tooltip } from "../tooltip";
@@ -8,9 +8,11 @@
 	type Props = {
 		elements: Element[];
 		right?: boolean;
+		hover?: boolean;
+		content?: Snippet;
 	};
 
-	let { elements, right, ...props }: Props & ComponentProps<Button> = $props();
+	let { elements, right, hover, content, ...props }: Props & ComponentProps<Button> = $props();
 
 	let show = $state(false);
 
@@ -34,8 +36,14 @@
 </script>
 
 <div class="menu" role="none" class:right>
-	<Tooltip {show}>
-		<Button onclick={() => (show = !show)} onblurcapture={handleBlur} {...props} />
+	<Tooltip {show} {hover}>
+		{#if content}
+			<div role="none" onclick={() => (show = !show)} onblurcapture={handleBlur}>
+				{@render content()}
+			</div>
+		{:else}
+			<Button onclick={() => (show = !show)} onblurcapture={handleBlur} {...props} />
+		{/if}
 
 		{#snippet tooltip()}
 			<div class="buttons" bind:this={buttons}>
