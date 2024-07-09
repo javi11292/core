@@ -9,8 +9,7 @@
 		hover?: boolean;
 	};
 
-	let { children, tooltip, show, hover }: Props = $props();
-	let hoverShow = $state(false);
+	let { children, tooltip, show = $bindable(), hover }: Props = $props();
 
 	const appear = (_node: HTMLDivElement) => ({
 		duration: 150,
@@ -20,17 +19,23 @@
       opacity: ${t};
     `,
 	});
+
+	const handleHover = (value: boolean) => () => {
+		if (hover) {
+			show = value;
+		}
+	};
 </script>
 
 <span
 	class="tooltip"
 	role="tooltip"
-	onmouseenter={() => (hoverShow = true)}
-	onmouseleave={() => (hoverShow = false)}
+	onmouseenter={handleHover(true)}
+	onmouseleave={handleHover(false)}
 >
 	{@render children()}
 
-	{#if show || (hover && hoverShow)}
+	{#if show}
 		<div transition:appear class="content">
 			{@render tooltip()}
 		</div>

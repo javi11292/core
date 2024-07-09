@@ -36,13 +36,13 @@
 </script>
 
 <div class="menu" role="none" class:right>
-	<Tooltip {show} {hover}>
+	<Tooltip bind:show {hover}>
 		{#if content}
-			<div role="none" onclick={() => (show = !show)} onblurcapture={handleBlur}>
+			<div role="none" onblurcapture={handleBlur}>
 				{@render content()}
 			</div>
 		{:else}
-			<Button onclick={() => (show = !show)} onblurcapture={handleBlur} {...props} />
+			<Button onblurcapture={handleBlur} {...props} />
 		{/if}
 
 		{#snippet tooltip()}
