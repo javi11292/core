@@ -1,18 +1,6 @@
 <script lang="ts">
-	import { dev } from "$app/environment";
 	import { onNavigate } from "$app/navigation";
-	import type { Snippet } from "svelte";
-	import "./layout.scss";
-
-	type Props = { children: Snippet };
-
-	let { children }: Props = $props();
-
-	$effect(() => {
-		if (!dev && "serviceWorker" in navigator) {
-			navigator.serviceWorker.register("/service-worker.js");
-		}
-	});
+	import "./setup.scss";
 
 	onNavigate(({ from, to, complete }) => {
 		if (!document.startViewTransition) return;
@@ -27,5 +15,3 @@
 		});
 	});
 </script>
-
-{@render children()}
