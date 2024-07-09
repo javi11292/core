@@ -33,16 +33,24 @@
 			show = false;
 		}
 	};
+
+	const handleShow = () => {
+		if (hover) {
+			return;
+		}
+
+		show = !show;
+	};
 </script>
 
 <div class="menu" role="none" class:right>
 	<Tooltip bind:show {hover}>
 		{#if content}
-			<div role="none" onblurcapture={handleBlur}>
+			<div role="none" onclick={handleShow} onblurcapture={handleBlur}>
 				{@render content()}
 			</div>
 		{:else}
-			<Button onblurcapture={handleBlur} {...props} />
+			<Button onclick={handleShow} onblurcapture={handleBlur} {...props} />
 		{/if}
 
 		{#snippet tooltip()}
