@@ -9,3 +9,22 @@ export const dynamic =
 
 		return component.default;
 	};
+
+export const memo = <T extends unknown[], R>(
+	callback: (...args: T) => R,
+	expired?: (value: R) => boolean,
+) => {
+	let executed = false;
+	let result: R;
+
+	return (...args: T) => {
+		if (executed && !expired?.(result)) {
+			return result;
+		}
+
+		executed = true;
+		result = callback(...args);
+
+		return result;
+	};
+};
