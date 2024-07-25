@@ -2,7 +2,7 @@
 	import { browser } from "$app/environment";
 
 	class Store {
-		web = $state<boolean | null>(null);
+		web = $state<boolean>();
 	}
 
 	const store = new Store();
@@ -23,10 +23,10 @@
 
 	type Props = { children: Snippet } & ({ web?: false; app: true } | { web: true; app?: false });
 
-	let { children, web, app }: Props = $props();
+	let { children, web = false, app = false }: Props = $props();
 </script>
 
-{#if store.web === null || store.web === !!web}
+{#if store.web === undefined || store.web === web}
 	<div class:web class:app>
 		{@render children()}
 	</div>
