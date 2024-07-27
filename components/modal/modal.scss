@@ -10,6 +10,7 @@
 	overflow: hidden;
 	margin: auto;
 	display: grid;
+	user-select: none;
 
 	> div {
 		overflow: auto;
