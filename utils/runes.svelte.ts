@@ -1,16 +1,8 @@
 export class State<T = undefined> {
 	state: T = $state() as T;
-	private initial?: () => T;
 
-	constructor(value?: T, initial?: () => T) {
+	constructor(value?: T) {
 		this.state = value as T;
-		this.initial = initial;
-	}
-
-	reset() {
-		if (this.initial) {
-			this.state = this.initial();
-		}
 	}
 }
 
