@@ -3,9 +3,14 @@
 	import type { AnimationEventHandler } from "svelte/elements";
 	import { Button } from "../button";
 
-	type Props = { open?: boolean; children: Snippet; closeButton?: boolean };
+	type Props = {
+		open?: boolean;
+		children: Snippet;
+		closeButton?: boolean;
+		preventCancel?: boolean;
+	};
 
-	let { open = $bindable(false), children, closeButton }: Props = $props();
+	let { open = $bindable(false), children, closeButton, preventCancel }: Props = $props();
 
 	let dialog = $state<HTMLDialogElement>();
 	let keepOpen = $state(false);
@@ -14,11 +19,6 @@
 		if (event.target === dialog) {
 			open = false;
 		}
-	};
-
-	const handleCancel = (event: Event) => {
-		event.preventDefault();
-		open = false;
 	};
 
 	const handleAnimation =
@@ -32,13 +32,32 @@
 	$effect(() => {
 		dialog?.showModal();
 	});
+
+	$effect(() => {
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key !== "Escape") {
+				return;
+			}
+
+			event.preventDefault();
+
+			if (preventCancel) {
+				return;
+			}
+
+			open = false;
+		};
+
+		window.addEventListener("keydown", handleKeyDown);
+
+		return () => window.removeEventListener("keydown", handleKeyDown);
+	});
 </script>
 
 {#if open || keepOpen}
 	<dialog
 		bind:this={dialog}
 		onclick={handleClick}
-		oncancel={handleCancel}
 		class="dialog"
 		class:reverse={!open}
 		role="none"
