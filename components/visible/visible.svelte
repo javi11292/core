@@ -1,6 +1,4 @@
 <script lang="ts" context="module">
-	import { browser } from "$app/environment";
-
 	class Store {
 		web = $state<boolean>();
 	}
@@ -19,6 +17,7 @@
 </script>
 
 <script lang="ts">
+	import { browser } from "$app/environment";
 	import type { Snippet } from "svelte";
 
 	type Props = { children: Snippet } & ({ web?: false; app: true } | { web: true; app?: false });
