@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
-	import type { AnimationEventHandler } from "svelte/elements";
 	import { Button } from "../button";
 
 	type Props = {
@@ -12,28 +11,31 @@
 
 	let { open = $bindable(false), children, closeButton, preventCancel }: Props = $props();
 
-	let dialog = $state<HTMLDialogElement>();
-	let keepOpen = $state(false);
+	let dialog: HTMLDialogElement;
 
 	const handleClick = (event: Event) => {
-		if (event.target === dialog) {
+		if (event.target === dialog && !preventCancel) {
 			open = false;
 		}
 	};
 
-	const handleAnimation =
-		(start: boolean): AnimationEventHandler<HTMLDialogElement> =>
-		(event) => {
-			if (!event.pseudoElement) {
-				keepOpen = open || start;
-			}
-		};
+	const handleAnimationEnd = (event: AnimationEvent) => {
+		if (!open && !event.pseudoElement) {
+			dialog.close();
+		}
+	};
 
 	$effect(() => {
-		dialog?.showModal();
+		if (open) {
+			dialog.showModal();
+		}
 	});
 
 	$effect(() => {
+		if (!open) {
+			return;
+		}
+
 		const handleKeyDown = (event: KeyboardEvent) => {
 			if (event.key !== "Escape") {
 				return;
@@ -54,26 +56,23 @@
 	});
 </script>
 
-{#if open || keepOpen}
-	<dialog
-		bind:this={dialog}
-		onclick={handleClick}
-		class="dialog"
-		class:reverse={!open}
-		role="none"
-		onanimationstart={handleAnimation(true)}
-		onanimationend={handleAnimation(false)}
-	>
-		<div>
-			{@render children()}
-			{#if closeButton}
-				<div class="close">
-					<Button text icon="close" onclick={() => (open = false)} />
-				</div>
-			{/if}
-		</div>
-	</dialog>
-{/if}
+<dialog
+	bind:this={dialog}
+	onclick={handleClick}
+	class="dialog"
+	class:open
+	role="none"
+	onanimationend={handleAnimationEnd}
+>
+	<div>
+		{@render children()}
+		{#if closeButton}
+			<div class="close">
+				<Button text icon="close" onclick={() => (open = false)} />
+			</div>
+		{/if}
+	</div>
+</dialog>
 
 <style>
 	@import "./modal.scss";
