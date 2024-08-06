@@ -64,7 +64,7 @@
 	role="none"
 	onanimationend={handleAnimationEnd}
 >
-	<div>
+	<div class="content">
 		{@render children()}
 		{#if closeButton}
 			<div class="close">
