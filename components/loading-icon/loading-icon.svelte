@@ -1,5 +1,5 @@
-<svg class="icon" viewBox="22 22 44 44">
-	<circle class="circle" cx="44" cy="44" r="20.2" fill="none" stroke-width="3.6" />
+<svg class="icon" viewBox="0 0 48 48">
+	<circle class="circle" cx="24" cy="24" r="20" fill="none" stroke-width="4" />
 </svg>
 
 <style>

@@ -1,60 +1,80 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
-	import type { AnimationEventHandler } from "svelte/elements";
 	import { Button } from "../button";
 
-	type Props = { open?: boolean; children: Snippet; closeButton?: boolean };
+	type Props = {
+		open?: boolean;
+		children: Snippet;
+		closeButton?: boolean;
+		preventCancel?: boolean;
+		onClose?: () => void;
+	};
 
-	let { open = $bindable(false), children, closeButton }: Props = $props();
+	let { open = $bindable(false), onClose, children, closeButton, preventCancel }: Props = $props();
 
-	let dialog = $state<HTMLDialogElement>();
-	let keepOpen = $state(false);
+	let dialog: HTMLDialogElement;
 
 	const handleClick = (event: Event) => {
-		if (event.target === dialog) {
+		if (event.target === dialog && !preventCancel) {
 			open = false;
 		}
 	};
 
-	const handleCancel = (event: Event) => {
-		event.preventDefault();
-		open = false;
+	const handleAnimationEnd = (event: AnimationEvent) => {
+		if (!open && !event.pseudoElement) {
+			dialog.close();
+			onClose?.();
+		}
 	};
 
-	const handleAnimation =
-		(start: boolean): AnimationEventHandler<HTMLDialogElement> =>
-		(event) => {
-			if (!event.pseudoElement) {
-				keepOpen = open || start;
-			}
-		};
+	$effect(() => {
+		if (open) {
+			dialog.showModal();
+		}
+	});
 
 	$effect(() => {
-		dialog?.showModal();
+		if (!open) {
+			return;
+		}
+
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key !== "Escape") {
+				return;
+			}
+
+			event.preventDefault();
+
+			if (preventCancel) {
+				return;
+			}
+
+			open = false;
+		};
+
+		window.addEventListener("keydown", handleKeyDown);
+
+		return () => window.removeEventListener("keydown", handleKeyDown);
 	});
 </script>
 
-{#if open || keepOpen}
-	<dialog
-		bind:this={dialog}
-		onclick={handleClick}
-		oncancel={handleCancel}
-		class="dialog"
-		class:reverse={!open}
-		role="none"
-		onanimationstart={handleAnimation(true)}
-		onanimationend={handleAnimation(false)}
-	>
-		<div>
-			{@render children()}
-			{#if closeButton}
-				<div class="close">
-					<Button text icon="close" onclick={() => (open = false)} />
-				</div>
-			{/if}
-		</div>
-	</dialog>
-{/if}
+<dialog
+	bind:this={dialog}
+	onclick={handleClick}
+	class="dialog"
+	class:open
+	role="none"
+	onanimationend={handleAnimationEnd}
+>
+	<div class="content">
+		{@render children()}
+		{#if closeButton}
+			<div class="close">
+				<Button text icon="close" onclick={() => (open = false)} />
+			</div>
+		{/if}
+	</div>
+</dialog>
 
 <style>
 	@import "./modal.scss";

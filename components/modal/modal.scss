@@ -1,15 +1,17 @@
-.dialog {
+$duration: 200ms;
+
+dialog {
 	@include view-transition(modal);
-	animation: appear 200ms;
+	animation: disappear $duration forwards;
 	border: none;
 	border-radius: 0.4rem;
-	box-shadow: 0 0.4rem 0.6rem;
+	box-shadow: 0 0.4rem 0.6rem black;
 	max-width: 90vw;
 	max-height: 90vh;
 	padding: 0;
 	overflow: hidden;
 	margin: auto;
-	display: grid;
+	user-select: none;
 
 	> div {
 		overflow: auto;
@@ -19,18 +21,18 @@
 	}
 }
 
-.dialog::backdrop {
+dialog::backdrop {
 	@include view-transition(modal-backdrop);
-	animation: fadeIn 200ms;
+	animation: fadeOut $duration forwards;
 	background: rgba(0, 0, 0, 0.8);
 }
 
-.reverse {
-	animation: disappear 200ms forwards;
+.open {
+	animation: appear $duration;
 }
 
-.reverse::backdrop {
-	animation: fadeOut 200ms forwards;
+.open::backdrop {
+	animation: fadeIn $duration;
 }
 
 @keyframes fadeIn {
@@ -57,13 +59,11 @@
 	from {
 		opacity: 0;
 		scale: 0;
-		display: none;
 	}
 
 	to {
 		opacity: 1;
 		scale: 1;
-		display: block;
 	}
 }
 
@@ -71,13 +71,11 @@
 	from {
 		opacity: 1;
 		scale: 1;
-		display: block;
 	}
 
 	to {
 		opacity: 0;
 		scale: 0;
-		display: none;
 	}
 }
 
