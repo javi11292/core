@@ -17,13 +17,13 @@
 	@extend %background;
 }
 
-.element {
+.content {
 	padding: 1em;
 	border-radius: inherit;
 	overflow: hidden;
 }
 
-.element:not(:where(.text)) {
+.content:not(:where(.text)) {
 	box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.4);
 	background: $primaryColor;
 	color: $textColorInverse;
@@ -55,12 +55,12 @@
 .loading {
 	pointer-events: none;
 
-	.content {
+	.children {
 		opacity: 0;
 	}
 }
 
-.content {
+.children {
 	transition: opacity 200ms;
 
 	span {

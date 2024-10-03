@@ -11,7 +11,7 @@
 
 	let { children, tooltip, show = $bindable(), hover }: Props = $props();
 
-	const appear = (_node: HTMLDivElement) => ({
+	const appear: (node: HTMLElement) => object = () => ({
 		duration: 150,
 		easing: cubicInOut,
 		css: (t: number) => `

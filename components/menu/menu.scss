@@ -3,21 +3,21 @@
 }
 
 .buttons {
-	:global(.button) {
+	> :global(.button) {
 		text-transform: none;
 		border-radius: unset;
 		min-width: 100%;
 		color: white;
 		text-align: start;
 
-		:global(.element) {
+		> :global(.children) {
 			box-shadow: none;
 		}
 	}
 }
 
 .right {
-	:global(.tooltip) {
+	> :global(.tooltip) {
 		> :global(.content) {
 			right: 0;
 		}

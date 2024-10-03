@@ -3,16 +3,16 @@
 	import type { FocusEventHandler, MouseEventHandler } from "svelte/elements";
 	import { Button } from "../button";
 	import { Tooltip } from "../tooltip";
-	import type { Element } from "./types";
 
 	type Props = {
-		elements: Element[];
+		elements: (ComponentProps<typeof Button> & { label: string })[];
 		right?: boolean;
 		hover?: boolean;
 		content?: Snippet;
 	};
 
-	let { elements, right, hover, content, ...props }: Props & ComponentProps<Button> = $props();
+	let { elements, right, hover, content, ...props }: Props & ComponentProps<typeof Button> =
+		$props();
 
 	let show = $state(false);
 

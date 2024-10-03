@@ -46,7 +46,7 @@
 
 <svelte:element this={href ? "a" : element} {title} {...elementProps} {...props} class="button">
 	<div
-		class="element"
+		class="content"
 		class:icon
 		class:disabled
 		class:loading
@@ -54,7 +54,7 @@
 		class:scale={!disableScale}
 		class:background={disableScale && !disableBackground}
 	>
-		<div class="content" class:mirror>
+		<div class="children" class:mirror>
 			<span>
 				{#if icon}
 					<Icon {icon} />
