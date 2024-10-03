@@ -10,7 +10,7 @@
 		disableBackground?: boolean;
 		loading?: boolean;
 		mirror?: boolean;
-		icon?: ComponentProps<Icon>["icon"];
+		icon?: ComponentProps<typeof Icon>["icon"];
 		href?: string;
 		text?: boolean;
 	} & HTMLButtonAttributes;
@@ -72,6 +72,74 @@
 	</div>
 </svelte:element>
 
-<style>
-	@import "./button.scss";
+<style module lang="scss">
+	.button {
+		border-radius: 10rem;
+		font-size: 1.4rem;
+		line-height: 1;
+		font-weight: 700;
+		display: block;
+		text-align: center;
+		text-transform: uppercase;
+		text-wrap: nowrap;
+	}
+
+	.scale {
+		@extend %scale;
+	}
+
+	.background {
+		@extend %background;
+	}
+
+	.element {
+		padding: 1em;
+		border-radius: inherit;
+		overflow: hidden;
+	}
+
+	.element:not(:where(.text)) {
+		box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.4);
+		background: $primaryColor;
+		color: $textColorInverse;
+	}
+
+	.icon {
+		border-radius: 50%;
+		padding: 0.25em;
+		font-size: 2em;
+	}
+
+	.loadingIcon {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		translate: -50% -50%;
+	}
+
+	.mirror {
+		rotate: 180deg;
+	}
+
+	.disabled {
+		pointer-events: none;
+		background: $primaryColorDisabled;
+		color: $textColorDisabled;
+	}
+
+	.loading {
+		pointer-events: none;
+
+		.content {
+			opacity: 0;
+		}
+	}
+
+	.content {
+		transition: opacity 200ms;
+
+		span {
+			vertical-align: middle;
+		}
+	}
 </style>
