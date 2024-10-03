@@ -2,7 +2,7 @@ import { State } from "./runes.svelte";
 
 const translations = new State<Record<string, string>>();
 
-export const translate = (key: string) => translations.state[key];
+export const translate = (key: string) => translations.state[key] ?? "";
 
 export const loadTranslations = async (locales: string[]) => {
 	let locale: string | undefined;
