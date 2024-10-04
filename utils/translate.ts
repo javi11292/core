@@ -2,23 +2,36 @@ import type keys from "$lib/locales/en.json";
 import type { Load } from "@sveltejs/kit";
 import { State } from "./runes.svelte";
 
+const locales = Object.entries(
+	import.meta.glob<string>("$lib/locales/*", {
+		eager: true,
+		import: "default",
+		query: "?url",
+	}),
+).reduce<Record<string, string>>((acc, [key, value]) => {
+	acc[key.match(/(\w+).json/)![1]!] = value;
+	return acc;
+}, {}) as { en: string; [key: string]: string };
+
 const translations = new State<Record<keyof typeof keys, string>>();
+
+console.log(locales);
 
 export const translate = (key: keyof typeof keys) => translations.state[key] ?? "";
 
 export const loadTranslations =
-	(locales: string[]): Load =>
+	(languages: string[]): Load =>
 	async ({ fetch }) => {
-		let locale: string | undefined;
+		let language: string | undefined;
 
 		for (let i = 0; i < navigator.languages.length; i++) {
-			locale = navigator.languages[i]?.match(/([^-]+)/)?.[1];
+			language = navigator.languages[i]?.match(/([^-]+)/)?.[1];
 
-			if (locale && locales.includes(locale)) {
+			if (language && languages.includes(language)) {
 				break;
 			}
 		}
 
-		const { default: url } = await import(`$lib/locales/${locale ?? locales[0]}.json?url`);
-		translations.state = await fetch(url).then((response) => response.json());
+		const url = language && locales[language];
+		translations.state = await fetch(url ?? locales.en).then((response) => response.json());
 	};
