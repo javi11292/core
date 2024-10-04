@@ -3,7 +3,7 @@ import type { Load } from "@sveltejs/kit";
 import { State } from "./runes.svelte";
 
 const locales = Object.entries(
-	import.meta.glob<string>("$lib/locales/*", {
+	import.meta.glob<string>("$lib/locales/*.json", {
 		eager: true,
 		import: "default",
 		query: "?url",
@@ -14,8 +14,6 @@ const locales = Object.entries(
 }, {}) as { en: string; [key: string]: string };
 
 const translations = new State<Record<keyof typeof keys, string>>();
-
-console.log(locales);
 
 export const translate = (key: keyof typeof keys) => translations.state[key] ?? "";
 
