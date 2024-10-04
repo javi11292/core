@@ -2,13 +2,13 @@ import type keys from "$lib/locales/en.json";
 import type { Load } from "@sveltejs/kit";
 import { State } from "./runes.svelte";
 
-const locales = Object.entries(
-	import.meta.glob<string>("$lib/locales/*.json", {
-		eager: true,
-		import: "default",
-		query: "?url",
-	}),
-).reduce<Record<string, string>>((acc, [key, value]) => {
+const urls = import.meta.glob<string>("$lib/locales/*.json", {
+	eager: true,
+	import: "default",
+	query: "?url",
+});
+
+const locales = Object.entries(urls).reduce<Record<string, string>>((acc, [key, value]) => {
 	acc[key.match(/(\w+).json/)![1]!] = value;
 	return acc;
 }, {}) as { en: string; [key: string]: string };
