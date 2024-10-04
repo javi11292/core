@@ -1,21 +1,24 @@
+import type keys from "$lib/locales/en.json";
+import type { Load } from "@sveltejs/kit";
 import { State } from "./runes.svelte";
 
-const translations = new State<Record<string, string>>();
+const translations = new State<Record<keyof typeof keys, string>>();
 
-export const translate = (key: string) => translations.state[key] ?? "";
+export const translate = (key: keyof typeof keys) => translations.state[key] ?? "";
 
-export const loadTranslations = async (locales: string[]) => {
-	let locale: string | undefined;
+export const loadTranslations =
+	(locales: string[]): Load =>
+	async ({ fetch }) => {
+		let locale: string | undefined;
 
-	for (let i = 0; i < navigator.languages.length; i++) {
-		locale = navigator.languages[i]?.match(/([^-]+)/)?.[1];
+		for (let i = 0; i < navigator.languages.length; i++) {
+			locale = navigator.languages[i]?.match(/([^-]+)/)?.[1];
 
-		if (locale && locales.includes(locale)) {
-			break;
+			if (locale && locales.includes(locale)) {
+				break;
+			}
 		}
-	}
 
-	translations.state = await fetch(`/locales/${locale ?? locales[0]}.json`).then((response) =>
-		response.json(),
-	);
-};
+		const { default: url } = await import(`$lib/locales/${locale ?? locales[0]}.json?url`);
+		translations.state = await fetch(url).then((response) => response.json());
+	};
