@@ -50,25 +50,27 @@ export const post = <T = unknown>(url: string, body?: object, init?: RequestInit
 
 export const upload = (
 	url: string,
-	data: Record<string, string | Blob | FileList>,
+	data?: Record<string, string | Blob | FileList>,
 	init?: RequestInit,
 ) => {
-	const formData = new FormData();
+	const body = new FormData();
 
-	Object.entries(data).forEach(([key, value]) => {
-		if (value instanceof FileList) {
-			for (const file of value) {
-				formData.append(key, file);
+	if (data) {
+		Object.entries(data).forEach(([key, value]) => {
+			if (value instanceof FileList) {
+				for (const file of value) {
+					body.append(key, file);
+				}
+
+				return;
 			}
-
-			return;
-		}
-		formData.append(key, value);
-	});
+			body.append(key, value);
+		});
+	}
 
 	return request(url, {
 		method: "POST",
-		body: formData,
+		body,
 		...init,
 	});
 };
