@@ -17,19 +17,17 @@ const translations = new State<Record<keyof typeof keys, string>>();
 
 export const translate = (key: keyof typeof keys) => translations.state[key] ?? "";
 
-export const loadTranslations =
-	(languages: string[]): Load =>
-	async ({ fetch }) => {
-		let language: string | undefined;
+export const loadTranslations: Load = async ({ fetch }) => {
+	let locale: string | undefined;
 
-		for (let i = 0; i < navigator.languages.length; i++) {
-			language = navigator.languages[i]?.match(/([^-]+)/)?.[1];
+	for (let i = 0; i < navigator.languages.length; i++) {
+		locale = navigator.languages[i]?.match(/([^-]+)/)?.[1];
 
-			if (language && languages.includes(language)) {
-				break;
-			}
+		if (locale && locales[locale]) {
+			break;
 		}
+	}
 
-		const url = language && locales[language];
-		translations.state = await fetch(url ?? locales.en).then((response) => response.json());
-	};
+	const url = locale && locales[locale];
+	translations.state = await fetch(url ?? locales.en).then((response) => response.json());
+};
