@@ -15,11 +15,3 @@
 		}
 	}
 }
-
-.right {
-	> :global(.tooltip) {
-		> :global(.content) {
-			right: 0;
-		}
-	}
-}

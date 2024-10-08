@@ -43,8 +43,8 @@
 	};
 </script>
 
-<div class="menu" role="none" class:right>
-	<Tooltip bind:show {hover}>
+<div class="menu" role="none">
+	<Tooltip bind:show {hover} {right}>
 		{#if content}
 			<div role="none" onclick={handleShow} onblurcapture={handleBlur}>
 				{@render content()}

@@ -7,9 +7,10 @@
 		children: Snippet;
 		tooltip: Snippet;
 		hover?: boolean;
+		right?: boolean;
 	};
 
-	let { children, tooltip, show = $bindable(), hover }: Props = $props();
+	let { children, tooltip, show = $bindable(), hover, right }: Props = $props();
 
 	const appear: (node: HTMLElement) => object = () => ({
 		duration: 150,
@@ -36,7 +37,7 @@
 	{@render children()}
 
 	{#if show}
-		<div transition:appear class="content">
+		<div transition:appear class="content" class:right>
 			{@render tooltip()}
 		</div>
 	{/if}
