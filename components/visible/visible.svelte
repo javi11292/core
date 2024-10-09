@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	class Store {
 		web = $state<boolean>();
 	}
