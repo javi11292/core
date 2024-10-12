@@ -2,6 +2,8 @@ import type keys from "$lib/locales/en.json";
 import type { Load } from "@sveltejs/kit";
 import { State } from "./runes.svelte";
 
+const REGEX = /{(\w+)}/g;
+
 const urls = import.meta.glob<string>("$lib/locales/*.json", {
 	eager: true,
 	import: "default",
@@ -15,7 +17,15 @@ const locales = Object.entries(urls).reduce<Record<string, string>>((acc, [key, 
 
 const translations = new State<Record<keyof typeof keys, string>>();
 
-export const translate = (key: keyof typeof keys) => translations.state[key] ?? "";
+export const translate = (key: keyof typeof keys, values?: Record<string, string>) => {
+	const string = translations.state[key] ?? "";
+
+	if (values) {
+		return string.replace(REGEX, (match, p1) => values[p1] ?? match);
+	}
+
+	return string;
+};
 
 export const loadTranslations: Load = async ({ fetch }) => {
 	let locale: string | undefined;
