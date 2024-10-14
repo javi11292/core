@@ -2,6 +2,10 @@
 	display: contents;
 }
 
+.content {
+	display: contents;
+}
+
 .buttons {
 	> :global(.button) {
 		text-transform: none;

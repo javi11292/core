@@ -46,7 +46,7 @@
 <div class="menu" role="none">
 	<Tooltip bind:show {hover} {right}>
 		{#if content}
-			<div role="none" onclick={handleShow} onblurcapture={handleBlur}>
+			<div class="content" role="none" onclick={handleShow} onblurcapture={handleBlur}>
 				{@render content()}
 			</div>
 		{:else}
