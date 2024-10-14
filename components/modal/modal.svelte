@@ -68,6 +68,7 @@
 >
 	<div class="content">
 		{@render children()}
+
 		{#if closeButton}
 			<div class="close">
 				<Button text icon="close" onclick={() => (open = false)} />
