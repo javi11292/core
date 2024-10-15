@@ -1,6 +1,5 @@
-%content {
+%hover {
 	position: relative;
-	transition: scale 200ms;
 	cursor: pointer;
 
 	&::before {
@@ -13,10 +12,6 @@
 		content: "";
 		pointer-events: none;
 	}
-}
-
-%background {
-	@extend %content;
 
 	@media (hover: hover) {
 		&:hover::before {
@@ -25,18 +20,8 @@
 	}
 
 	&:active {
-		transition: scale none;
-
 		&::before {
 			opacity: 0.2;
 		}
-	}
-}
-
-%scale {
-	@extend %background;
-
-	&:active {
-		scale: 95%;
 	}
 }

@@ -6,7 +6,6 @@
 
 	type Props = {
 		element?: string;
-		disableScale?: boolean;
 		disableBackground?: boolean;
 		loading?: boolean;
 		mirror?: boolean;
@@ -18,7 +17,6 @@
 	let {
 		element = "button",
 		type = "button",
-		disableScale,
 		disableBackground,
 		children,
 		disabled,
@@ -51,8 +49,7 @@
 		class:disabled
 		class:loading
 		class:text
-		class:scale={!disableScale}
-		class:background={disableScale && !disableBackground}
+		class:background={!disableBackground}
 	>
 		<div class="children" class:mirror>
 			<span>

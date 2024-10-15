@@ -56,7 +56,7 @@
 		{#snippet tooltip()}
 			<div class="buttons" bind:this={buttons}>
 				{#each elements as { label, onclick, ...props }}
-					<Button disableScale onclick={handleClick(onclick)} {...props}>
+					<Button onclick={handleClick(onclick)} {...props}>
 						{label}
 					</Button>
 				{/each}

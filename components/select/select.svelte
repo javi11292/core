@@ -24,7 +24,6 @@
 	{/if}
 
 	<Menu
-		disableScale
 		disableBackground
 		elements={options.map((option) => ({ label: option.label, onclick: handleSelect(option) }))}
 	>

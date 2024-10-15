@@ -9,12 +9,8 @@
 	text-wrap: nowrap;
 }
 
-.scale {
-	@extend %scale;
-}
-
 .background {
-	@extend %background;
+	@extend %hover;
 }
 
 .content {
