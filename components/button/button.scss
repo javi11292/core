@@ -58,8 +58,7 @@
 
 .children {
 	transition: opacity 200ms;
-
-	span {
-		vertical-align: middle;
-	}
+	display: flex;
+	align-items: center;
+	gap: 1rem;
 }

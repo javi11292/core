@@ -45,20 +45,20 @@
 <svelte:element this={href ? "a" : element} {title} {...elementProps} {...props} class="button">
 	<div
 		class="content"
-		class:icon
+		class:icon={icon && !children}
 		class:disabled
 		class:loading
 		class:text
 		class:background={!disableBackground}
 	>
 		<div class="children" class:mirror>
-			<span>
-				{#if icon}
-					<Icon {icon} />
-				{:else if children}
-					{@render children()}
-				{/if}
-			</span>
+			{#if icon}
+				<Icon {icon} />
+			{/if}
+
+			{#if children}
+				{@render children()}
+			{/if}
 		</div>
 
 		{#if loading}
