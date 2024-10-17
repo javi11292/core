@@ -1,14 +1,9 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
-	import type {
-		FormEventHandler,
-		HTMLInputAttributes,
-		HTMLTextareaAttributes,
-	} from "svelte/elements";
+	import type { HTMLInputAttributes, HTMLTextareaAttributes } from "svelte/elements";
 	import { fade } from "svelte/transition";
 
 	type Props = {
-		regex?: RegExp;
 		icon?: Snippet;
 		label?: string;
 		value?: string;
@@ -24,7 +19,6 @@
 
 	let {
 		value = $bindable(),
-		regex,
 		label,
 		disableShrink,
 		disableGrow,
@@ -34,18 +28,6 @@
 		error,
 		...props
 	}: InputProps | TextareaProps = $props();
-
-	const handleInput: FormEventHandler<HTMLInputElement | HTMLTextAreaElement> = (event) => {
-		const { currentTarget } = event;
-
-		if (!regex || regex.test(currentTarget.value)) {
-			value = currentTarget.value;
-		} else {
-			currentTarget.value = value ?? "";
-		}
-
-		(props.oninput as FormEventHandler<HTMLInputElement | HTMLTextAreaElement>)?.(event);
-	};
 </script>
 
 <div class="input" class:disabled class:focusLabel={!disableFocusLabel}>
@@ -62,23 +44,9 @@
 	</div>
 
 	{#if props.rows !== undefined}
-		<textarea
-			{...props}
-			class:disabled
-			oninput={handleInput}
-			aria-label={label}
-			value={value ?? ""}
-			{disabled}
-		></textarea>
+		<textarea {...props} class:disabled aria-label={label} bind:value {disabled}></textarea>
 	{:else}
-		<input
-			{...props}
-			class:disabled
-			oninput={handleInput}
-			aria-label={label}
-			value={value ?? ""}
-			{disabled}
-		/>
+		<input {...props} class:disabled aria-label={label} bind:value {disabled} />
 	{/if}
 
 	{#if icon}
