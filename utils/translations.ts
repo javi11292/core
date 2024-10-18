@@ -11,7 +11,9 @@ const urls = import.meta.glob<string>("$lib/locales/*.json", {
 });
 
 const locales = Object.entries(urls).reduce<Record<string, string>>((acc, [key, value]) => {
-	acc[key.match(/(\w+).json/)![1]!] = value;
+	const [, match] = key.match(/(\w+).json/) ?? [];
+	acc[match!] = value;
+
 	return acc;
 }, {}) as { en: string; [key: string]: string };
 
@@ -20,16 +22,15 @@ export const loadTranslations = async ({ fetch, request }: Parameters<ServerLoad
 
 	let locale: string | undefined;
 
-	for (const match of matches) {
-		locale = match[1];
+	for (const [, match] of matches) {
+		locale = match && locales[match.toLowerCase()];
 
-		if (locale && locales[locale]) {
+		if (locale) {
 			break;
 		}
 	}
 
-	const url = locale && locales[locale];
-	return await fetch(url ?? locales.en).then((response) => response.json());
+	return await fetch(locale || locales.en).then((response) => response.json());
 };
 
 export const getTranslate = () =>
