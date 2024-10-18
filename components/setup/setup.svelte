@@ -1,6 +1,16 @@
 <script lang="ts">
 	import { onNavigate } from "$app/navigation";
+	import { setContext, type Snippet } from "svelte";
 	import "./setup.scss";
+
+	const REPLACE_VALUE = /{(\w+)}/g;
+
+	type Props = {
+		translations?: Record<string, string>;
+		children: Snippet;
+	};
+
+	let { translations = {}, children }: Props = $props();
 
 	onNavigate(({ from, to, complete }) => {
 		if (!document.startViewTransition) return;
@@ -14,4 +24,18 @@
 			});
 		});
 	});
+
+	const translate = (key: string, values?: Record<string, string>) => {
+		const translation = translations[key];
+
+		if (translation && values) {
+			return translation.replace(REPLACE_VALUE, (match, p1) => values[p1] ?? match);
+		}
+
+		return translation ?? "";
+	};
+
+	setContext("translate", translate);
 </script>
+
+{@render children()}
