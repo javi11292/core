@@ -33,7 +33,5 @@ export const loadTranslations = async ({ fetch, request }: Parameters<ServerLoad
 	return await fetch(locale || locales.en).then((response) => response.json());
 };
 
-const [getTranslate, setTranslate] =
+export const [getTranslate, setTranslate] =
 	setupContext<(key: keyof typeof keys, values?: Record<string, string>) => string>();
-
-export { getTranslate, setTranslate };

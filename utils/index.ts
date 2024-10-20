@@ -62,5 +62,5 @@ export const serialize = <T extends object | unknown[]>(object: T): T => {
 export const setupContext = <T>() => {
 	const STORE = Symbol();
 
-	return [() => getContext<T>(STORE), (data: T) => setContext(STORE, data)];
+	return [() => getContext<T>(STORE), (data: T) => setContext(STORE, data)] as const;
 };
