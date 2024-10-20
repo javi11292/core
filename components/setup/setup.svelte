@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onNavigate } from "$app/navigation";
+	import { TRANSLATE } from "$lib/core/utils/translations";
 	import { setContext, type Snippet } from "svelte";
 	import "./setup.scss";
 
@@ -35,7 +36,7 @@
 		return translation ?? "";
 	};
 
-	setContext("translate", translate);
+	setContext(TRANSLATE, translate);
 </script>
 
 {@render children()}

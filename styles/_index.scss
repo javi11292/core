@@ -1,15 +1,6 @@
 @forward "theme";
 @forward "hover";
 
-%view-transition {
-	outline: 0.5rem solid transparent;
-}
-
-@mixin view-transition($name) {
-	@extend %view-transition;
-	view-transition-name: $name;
-}
-
 @mixin mobile {
 	@media (max-width: 40em) {
 		@content;

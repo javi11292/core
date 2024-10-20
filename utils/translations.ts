@@ -4,6 +4,8 @@ import { getContext } from "svelte";
 
 const ACCEPT_LANGUAGE = /(.*?)(?:-.*?)?(?:[,|;](?:q=.*?,)?)/gi;
 
+export const TRANSLATE = Symbol();
+
 const urls = import.meta.glob<string>("$lib/locales/*.json", {
 	eager: true,
 	import: "default",
@@ -34,4 +36,4 @@ export const loadTranslations = async ({ fetch, request }: Parameters<ServerLoad
 };
 
 export const getTranslate = () =>
-	getContext<(key: keyof typeof keys, values?: Record<string, string>) => string>("translate");
+	getContext<(key: keyof typeof keys, values?: Record<string, string>) => string>(TRANSLATE);
