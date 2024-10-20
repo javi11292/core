@@ -2,7 +2,7 @@ import type keys from "$lib/locales/en.json";
 import type { ServerLoad } from "@sveltejs/kit";
 import { getContext, setContext } from "svelte";
 
-export type Translate = (key: keyof typeof keys, values?: Record<string, string>) => string;
+type Translate = (key: keyof typeof keys, values?: Record<string, string>) => string;
 
 const ACCEPT_LANGUAGE = /(.*?)(?:-.*?)?(?:[,|;](?:q=.*?,)?)/gi;
 const TRANSLATE = Symbol();

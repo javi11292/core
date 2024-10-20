@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onNavigate } from "$app/navigation";
-	import { setTranslate, type Translate } from "$lib/core/utils/translations";
+	import { setTranslate } from "$lib/core/utils/translations";
 	import { type Snippet } from "svelte";
 	import "./setup.scss";
 
@@ -26,7 +26,7 @@
 		});
 	});
 
-	const translate: Translate = (key, values) => {
+	setTranslate((key, values) => {
 		const translation = translations[key];
 
 		if (translation && values) {
@@ -34,9 +34,7 @@
 		}
 
 		return translation ?? "";
-	};
-
-	setTranslate(translate);
+	});
 </script>
 
 {@render children()}
