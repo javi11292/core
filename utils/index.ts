@@ -1,4 +1,4 @@
-import { tick } from "svelte";
+import { getContext, setContext, tick } from "svelte";
 
 export const transition = (callback: () => void) => {
 	if (!document.startViewTransition) {
@@ -57,4 +57,10 @@ export const serialize = <T extends object | unknown[]>(object: T): T => {
 			return [key, serialize(value)];
 		}),
 	) as T;
+};
+
+export const setupContext = <T>() => {
+	const STORE = Symbol();
+
+	return [() => getContext<T>(STORE), (data: T) => setContext(STORE, data)];
 };
