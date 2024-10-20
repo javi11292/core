@@ -1,10 +1,11 @@
 import type keys from "$lib/locales/en.json";
 import type { ServerLoad } from "@sveltejs/kit";
-import { getContext } from "svelte";
+import { getContext, setContext } from "svelte";
+
+export type Translate = (key: keyof typeof keys, values?: Record<string, string>) => string;
 
 const ACCEPT_LANGUAGE = /(.*?)(?:-.*?)?(?:[,|;](?:q=.*?,)?)/gi;
-
-export const TRANSLATE = Symbol();
+const TRANSLATE = Symbol();
 
 const urls = import.meta.glob<string>("$lib/locales/*.json", {
 	eager: true,
@@ -35,5 +36,6 @@ export const loadTranslations = async ({ fetch, request }: Parameters<ServerLoad
 	return await fetch(locale || locales.en).then((response) => response.json());
 };
 
-export const getTranslate = () =>
-	getContext<(key: keyof typeof keys, values?: Record<string, string>) => string>(TRANSLATE);
+export const setTranslate = (translate: Translate) => setContext(TRANSLATE, translate);
+
+export const getTranslate = () => getContext<Translate>(TRANSLATE);

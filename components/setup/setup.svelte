@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onNavigate } from "$app/navigation";
-	import { TRANSLATE } from "$lib/core/utils/translations";
-	import { setContext, type Snippet } from "svelte";
+	import { setTranslate, type Translate } from "$lib/core/utils/translations";
+	import { type Snippet } from "svelte";
 	import "./setup.scss";
 
 	const REPLACE_VALUE = /{(\w+)}/g;
@@ -26,7 +26,7 @@
 		});
 	});
 
-	const translate = (key: string, values?: Record<string, string>) => {
+	const translate: Translate = (key, values) => {
 		const translation = translations[key];
 
 		if (translation && values) {
@@ -36,7 +36,7 @@
 		return translation ?? "";
 	};
 
-	setContext(TRANSLATE, translate);
+	setTranslate(translate);
 </script>
 
 {@render children()}
