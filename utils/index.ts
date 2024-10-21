@@ -64,3 +64,9 @@ export const setupContext = <T>() => {
 
 	return [() => getContext<T>(STORE), (data: T) => setContext(STORE, data)] as const;
 };
+
+export function assert(condition: boolean): asserts condition {
+	if (condition) {
+		throw new Error();
+	}
+}
