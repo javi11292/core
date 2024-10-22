@@ -1,3 +1,9 @@
+<script lang="ts" module>
+	let viewTransition = true;
+
+	export const disableViewTransition = () => (viewTransition = false);
+</script>
+
 <script lang="ts">
 	import { onNavigate } from "$app/navigation";
 	import { setTranslate } from "$lib/core/utils/translations";
@@ -14,9 +20,14 @@
 	let { translations = {}, children }: Props = $props();
 
 	onNavigate(({ from, to, complete }) => {
-		if (!document.startViewTransition) return;
+		if (!document.startViewTransition || from?.url.href === to?.url.href) {
+			return;
+		}
 
-		if (from?.url.href === to?.url.href) return;
+		if (!viewTransition) {
+			viewTransition = true;
+			return;
+		}
 
 		return new Promise((resolve) => {
 			document.startViewTransition(async () => {

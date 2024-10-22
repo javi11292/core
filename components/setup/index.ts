@@ -1,1 +1,1 @@
-export { default as Setup } from "./setup.svelte";
+export { default as Setup, disableViewTransition } from "./setup.svelte";
