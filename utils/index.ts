@@ -43,26 +43,6 @@ export const memo = <T extends unknown[], R>(
 	};
 };
 
-export const serialize = <T extends object | unknown[]>(object: T): T => {
-	if (Array.isArray(object)) {
-		return object.map((value) => serialize(value)) as T;
-	}
-
-	return Object.fromEntries(
-		Object.entries(object).map(([key, value]) => {
-			if (
-				!value ||
-				typeof value !== "object" ||
-				(value.constructor !== Object && value.constructor !== Array)
-			) {
-				return [key, value];
-			}
-
-			return [key, serialize(value)];
-		}),
-	) as T;
-};
-
 export const setupContext = <T>() => {
 	const STORE = Symbol();
 
