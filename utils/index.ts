@@ -50,7 +50,11 @@ export const serialize = <T extends object | unknown[]>(object: T): T => {
 
 	return Object.fromEntries(
 		Object.entries(object).map(([key, value]) => {
-			if (!value || typeof value !== "object" || value.constructor !== Object) {
+			if (
+				!value ||
+				typeof value !== "object" ||
+				(value.constructor !== Object && value.constructor !== Array)
+			) {
 				return [key, value];
 			}
 
