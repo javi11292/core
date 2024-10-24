@@ -50,7 +50,7 @@ export const setupContext = <T>() => {
 };
 
 export function assert(condition: boolean): asserts condition {
-	if (condition) {
+	if (!condition) {
 		throw new Error();
 	}
 }
