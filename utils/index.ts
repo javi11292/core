@@ -49,6 +49,16 @@ export const setupContext = <T>() => {
 	return [() => getContext<T>(STORE), (data: T) => setContext(STORE, data)] as const;
 };
 
+export const unwrap =
+	<E = null>() =>
+	<T>(response: { error: unknown; data: T }) => {
+		if (response.error) {
+			throw response.error;
+		}
+
+		return response.data as Exclude<T, E>;
+	};
+
 export function assert(condition: boolean): asserts condition {
 	if (!condition) {
 		throw new Error();
