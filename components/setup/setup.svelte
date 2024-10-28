@@ -6,7 +6,7 @@
 
 <script lang="ts">
 	import { onNavigate } from "$app/navigation";
-	import { setTranslate } from "$lib/core/utils/translations";
+	import { setTranslate } from "$core/utils/translations";
 	import { type Snippet } from "svelte";
 	import "./setup.scss";
 
