@@ -41,7 +41,7 @@ export const post = <T = unknown>(url: string, body?: object, init?: RequestInit
 	return request<T>(url, {
 		method: "POST",
 		headers: {
-			"Content-Type": "application/json",
+			"content-type": "application/json",
 		},
 		body: body && JSON.stringify(body),
 		...init,
