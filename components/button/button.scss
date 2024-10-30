@@ -4,27 +4,22 @@
 	line-height: 1;
 	font-weight: 700;
 	display: block;
-	text-transform: uppercase;
 	text-wrap: nowrap;
-}
-
-.background {
-	@extend %hover;
-}
-
-.content {
 	padding: 0.75em 1em;
-	border-radius: inherit;
 	overflow: hidden;
 	transition:
 		background-color 200ms,
 		color 200ms;
+
+	&:not(:where(.text)) {
+		box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.4);
+		background: $primaryColor;
+		color: $textColorInverse;
+	}
 }
 
-.content:not(:where(.text)) {
-	box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.4);
-	background: $primaryColor;
-	color: $textColorInverse;
+.hover {
+	@extend %hover;
 }
 
 .icon {

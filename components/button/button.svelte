@@ -6,7 +6,7 @@
 
 	type Props = {
 		element?: string;
-		disableBackground?: boolean;
+		disableHover?: boolean;
 		loading?: boolean;
 		mirror?: boolean;
 		icon?: ComponentProps<typeof Icon>["icon"];
@@ -17,7 +17,7 @@
 	let {
 		element = "button",
 		type = "button",
-		disableBackground,
+		disableHover,
 		children,
 		disabled,
 		mirror,
@@ -42,29 +42,31 @@
 	});
 </script>
 
-<svelte:element this={href ? "a" : element} {title} {...elementProps} {...props} class="button">
-	<div
-		class="content"
-		class:icon={icon && !children}
-		class:disabled
-		class:loading
-		class:text
-		class:background={!disableBackground}
-	>
-		<div class="children" class:mirror>
-			{#if icon}
-				<Icon {icon} />
-			{/if}
-
-			{@render children?.()}
-		</div>
-
-		{#if loading}
-			<div class="loadingIcon">
-				<LoadingIcon />
-			</div>
+<svelte:element
+	this={href ? "a" : element}
+	class="button"
+	class:disabled
+	class:loading
+	class:text
+	class:hover={!disableHover}
+	class:icon={icon && !children}
+	{title}
+	{...elementProps}
+	{...props}
+>
+	<div class="children" class:mirror>
+		{#if icon}
+			<Icon {icon} />
 		{/if}
+
+		{@render children?.()}
 	</div>
+
+	{#if loading}
+		<div class="loadingIcon">
+			<LoadingIcon />
+		</div>
+	{/if}
 </svelte:element>
 
 <style>

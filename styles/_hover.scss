@@ -3,14 +3,13 @@
 	cursor: pointer;
 
 	&::before {
+		content: "";
 		position: absolute;
 		inset: 0;
 		height: 100%;
 		width: 100%;
 		background: currentColor;
 		opacity: 0;
-		content: "";
-		pointer-events: none;
 	}
 
 	@media (hover: hover) {
