@@ -1,3 +1,5 @@
+import type { User } from "@supabase/supabase-js";
+import { redirect } from "@sveltejs/kit";
 import { getContext, setContext, tick } from "svelte";
 
 export const transition = (callback: () => void) => {
@@ -52,5 +54,21 @@ export const setupContext = <T>() => {
 export function assert(condition: unknown): asserts condition {
 	if (!condition) {
 		throw new Error();
+	}
+}
+
+type Locals = { locals: App.Locals };
+
+export async function assertSession({ locals }: Locals, returns: true): Promise<User>;
+export async function assertSession({ locals }: Locals, returns?: false): Promise<undefined>;
+export async function assertSession({ locals }: Locals, returns?: boolean) {
+	const session = await locals.getUser();
+
+	if (!session) {
+		redirect(307, "/login");
+	}
+
+	if (returns) {
+		return session;
 	}
 }
