@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Icon, icons } from "../icon";
+	import { Icon } from "../icon";
+	import { arrowDown } from "../icon/icons";
 	import { Input } from "../input";
 	import { Menu } from "../menu";
 	import type { Option } from "./types";
@@ -29,7 +30,7 @@
 	>
 		<Input readonly disableFocusLabel value={selected?.label || ""} {label}>
 			{#snippet icon()}
-				<Icon icon={icons.arrowDown} />
+				<Icon icon={arrowDown} />
 			{/snippet}
 		</Input>
 	</Menu>
