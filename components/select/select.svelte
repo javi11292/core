@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Icon } from "../icon";
+	import { Icon, icons } from "../icon";
 	import { Input } from "../input";
 	import { Menu } from "../menu";
 	import type { Option } from "./types";
@@ -24,12 +24,12 @@
 	{/if}
 
 	<Menu
-		disableBackground
+		disableHover
 		elements={options.map((option) => ({ label: option.label, onclick: handleSelect(option) }))}
 	>
 		<Input readonly disableFocusLabel value={selected?.label || ""} {label}>
 			{#snippet icon()}
-				<Icon icon="arrow-down" />
+				<Icon icon={icons.arrowDown} />
 			{/snippet}
 		</Input>
 	</Menu>
