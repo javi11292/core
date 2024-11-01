@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { Icon } from "../icon";
-	import { arrowDown } from "../icon/icons";
 	import { Input } from "../input";
 	import { Menu } from "../menu";
 	import type { Option } from "./types";
@@ -28,11 +26,7 @@
 		disableHover
 		elements={options.map((option) => ({ label: option.label, onclick: handleSelect(option) }))}
 	>
-		<Input readonly disableFocusLabel value={selected?.label || ""} {label}>
-			{#snippet icon()}
-				<Icon icon={arrowDown} />
-			{/snippet}
-		</Input>
+		<Input readonly disableFocusLabel value={selected?.label || ""} {label} />
 	</Menu>
 </div>
 
