@@ -12,14 +12,6 @@ export const transition = (callback: () => void) => {
 	});
 };
 
-export const dynamic =
-	<T>(callback: () => Promise<{ default: T }>) =>
-	async () => {
-		const component = await callback();
-
-		return component.default;
-	};
-
 export const memo = <T extends unknown[], R>(
 	callback: (...args: T) => R,
 	expired?: (value: R) => boolean,
