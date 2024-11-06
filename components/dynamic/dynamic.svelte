@@ -1,16 +1,14 @@
-<script lang="ts">
-	import type { Component, ComponentProps } from "svelte";
+<script lang="ts" generics="T extends Record<string, unknown>">
+	import type { Component } from "svelte";
 
 	let {
 		component,
 		...props
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	}: ComponentProps<any> & {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		component: () => Promise<{ default: Component<any> }>;
+	}: T & {
+		component: () => Promise<{ default: Component<T> }>;
 	} = $props();
 
-	let DynamicComponent = $state<Component>();
+	let DynamicComponent = $state<Component<T>>();
 
 	$effect(() => {
 		component().then((value) => (DynamicComponent = value.default));
@@ -18,5 +16,5 @@
 </script>
 
 {#if DynamicComponent}
-	<DynamicComponent {...props} />
+	<DynamicComponent {...props as unknown as T} />
 {/if}
