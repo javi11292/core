@@ -10,6 +10,7 @@
 		width: 100%;
 		background: currentColor;
 		opacity: 0;
+		z-index: -1;
 	}
 
 	@media (hover: hover) {
@@ -18,9 +19,7 @@
 		}
 	}
 
-	&:active {
-		&::before {
-			opacity: 0.2;
-		}
+	&:active::before {
+		opacity: 0.2;
 	}
 }
