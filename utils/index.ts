@@ -46,3 +46,24 @@ export function assert(condition: unknown): asserts condition {
 		throw new Error();
 	}
 }
+
+export const setupCache = () => {
+	const cache = new Map<unknown, { maxAge: number; value: unknown }>();
+
+	return async <T>(callback: () => Promise<T>, ttl: number): Promise<T> => {
+		const element = cache.get(callback);
+
+		if (element && Date.now() < element.maxAge) {
+			return element.value as T;
+		}
+
+		const value = await callback();
+
+		cache.set(callback, {
+			maxAge: Date.now() + ttl,
+			value,
+		});
+
+		return value;
+	};
+};
