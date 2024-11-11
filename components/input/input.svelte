@@ -22,10 +22,19 @@
 		disableGrow,
 		disableFocusLabel,
 		disabled,
+		autofocus,
 		icon,
 		error,
 		...props
 	}: InputProps | TextareaProps = $props();
+
+	let input = $state<HTMLElement>();
+
+	$effect(() => {
+		if (autofocus && input) {
+			input.focus();
+		}
+	});
 </script>
 
 <div class="input" class:disabled class:focusLabel={!disableFocusLabel}>
@@ -42,9 +51,10 @@
 	</div>
 
 	{#if props.rows !== undefined}
-		<textarea {...props} class:disabled aria-label={label} bind:value {disabled}></textarea>
+		<textarea {...props} class:disabled aria-label={label} bind:this={input} bind:value {disabled}>
+		</textarea>
 	{:else}
-		<input {...props} class:disabled aria-label={label} bind:value {disabled} />
+		<input {...props} class:disabled aria-label={label} bind:this={input} bind:value {disabled} />
 	{/if}
 
 	{#if icon}
