@@ -7,7 +7,6 @@
 		icon?: Snippet;
 		label?: string;
 		value?: string;
-		disableShrink?: boolean;
 		disableGrow?: boolean;
 		disableFocusLabel?: boolean;
 		disabled?: boolean;
@@ -20,7 +19,6 @@
 	let {
 		value = $bindable(),
 		label,
-		disableShrink,
 		disableGrow,
 		disableFocusLabel,
 		disabled,
@@ -37,7 +35,7 @@
 
 	<div class="labelContainer" class:withIcon={icon}>
 		{#if label}
-			<div class="label" class:shrink={(value || disableGrow) && !disableShrink}>
+			<div class="label" class:shrink={value || disableGrow}>
 				{label}
 			</div>
 		{/if}
