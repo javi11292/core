@@ -1,0 +1,16 @@
+.g_id_signin {
+	display: inline-block;
+	background: #111;
+	padding: 2rem;
+	margin: auto;
+	border-radius: 4px;
+	transition: opacity 200ms;
+
+	&:empty {
+		opacity: 0;
+	}
+
+	:global(iframe) {
+		display: none !important;
+	}
+}
