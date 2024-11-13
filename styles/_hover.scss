@@ -3,6 +3,8 @@
 	cursor: pointer;
 
 	&::before {
+		--opacity: 0.1;
+
 		content: "";
 		position: absolute;
 		inset: 0;
@@ -15,11 +17,11 @@
 
 	@media (hover: hover) {
 		&:hover::before {
-			opacity: 0.1;
+			opacity: var(--opacity);
 		}
 	}
 
 	&:active::before {
-		opacity: 0.2;
+		opacity: calc(var(--opacity) * 2);
 	}
 }

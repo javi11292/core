@@ -54,9 +54,9 @@
 	{...elementProps}
 	{...props}
 >
-	<div class="children" class:mirror>
+	<div class="children">
 		{#if icon}
-			<Icon {icon} />
+			<Icon {icon} {mirror} />
 		{/if}
 
 		{@render children?.()}

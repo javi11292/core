@@ -1,10 +1,10 @@
 <script lang="ts">
-	type Props = { icon: string; class?: string };
+	type Props = { icon: string; mirror?: boolean };
 
-	let { icon }: Props = $props();
+	let { icon, mirror }: Props = $props();
 </script>
 
-<svg viewBox="0 0 24 24" fill="currentColor" class="icon">
+<svg viewBox="0 0 24 24" fill="currentColor" class="icon" class:mirror>
 	<use href={`${icon}#icon`} />
 </svg>
 
