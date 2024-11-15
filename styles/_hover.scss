@@ -1,10 +1,10 @@
 %hover {
+	--opacity: 0.1;
+
 	position: relative;
 	cursor: pointer;
 
 	&::before {
-		--opacity: 0.1;
-
 		content: "";
 		position: absolute;
 		inset: 0;
@@ -27,6 +27,8 @@
 }
 
 @mixin parentHover($selector) {
+	cursor: pointer;
+
 	& > #{$selector} {
 		@extend %hover;
 	}
