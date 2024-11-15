@@ -46,6 +46,14 @@
 
 		return translation ?? "";
 	});
+
+	$effect(() => {
+		const controller = new AbortController();
+
+		document.addEventListener("dragstart", (event) => event.preventDefault(), controller);
+
+		return () => controller.abort();
+	});
 </script>
 
 {@render children()}
