@@ -12,13 +12,13 @@
 		background-color 200ms,
 		color 200ms;
 
-	&:not(:where(.text)) {
+	&:not(.text) {
 		box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.4);
 		background: $primaryColor;
 		color: $textColorInverse;
 	}
 
-	&:not(:where(.icon)) > .children > :global(.icon) {
+	&:not(.icon) > .children > :global(.icon) {
 		margin: -0.5em 0;
 	}
 }
@@ -43,7 +43,7 @@
 	pointer-events: none;
 	color: $textColorDisabled;
 
-	&:not(:where(.text)) {
+	&:not(.text) {
 		background: $primaryColorDisabled;
 	}
 }
