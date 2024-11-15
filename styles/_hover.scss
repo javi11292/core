@@ -25,3 +25,17 @@
 		opacity: calc(var(--opacity) * 2);
 	}
 }
+
+@mixin parentHover($selector) {
+	& > #{$selector} {
+		@extend %hover;
+	}
+
+	&:hover > #{$selector}::before {
+		opacity: var(--opacity);
+	}
+
+	&:active > #{$selector}::before {
+		opacity: calc(var(--opacity) * 2);
+	}
+}

@@ -7,10 +7,10 @@
 		children: Snippet;
 		closeButton?: boolean;
 		preventCancel?: boolean;
-		onClose?: () => void;
+		onclose?: () => void;
 	};
 
-	let { open = $bindable(false), onClose, children, closeButton, preventCancel }: Props = $props();
+	let { open = $bindable(false), onclose, children, closeButton, preventCancel }: Props = $props();
 
 	let dialog: HTMLDialogElement;
 
@@ -23,7 +23,7 @@
 	const handleAnimationEnd = (event: AnimationEvent) => {
 		if (!open && !event.pseudoElement) {
 			dialog.close();
-			onClose?.();
+			onclose?.();
 		}
 	};
 
