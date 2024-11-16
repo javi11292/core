@@ -12,7 +12,7 @@
 		background-color 200ms,
 		color 200ms;
 
-	&:not(.text) {
+	&:where(:not(.text)) {
 		box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.4);
 		background: $primaryColor;
 		color: $textColorInverse;
@@ -43,7 +43,7 @@
 	pointer-events: none;
 	color: $textColorDisabled;
 
-	&:not(.text) {
+	&:where(:not(.text)) {
 		background: $primaryColorDisabled;
 	}
 }
