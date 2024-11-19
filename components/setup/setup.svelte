@@ -50,7 +50,9 @@
 	$effect(() => {
 		const controller = new AbortController();
 
-		document.addEventListener("dragstart", (event) => event.preventDefault(), controller);
+		document.addEventListener("dragstart", (event) => event.preventDefault(), {
+			signal: controller.signal,
+		});
 
 		return () => controller.abort();
 	});
