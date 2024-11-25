@@ -6,13 +6,11 @@
 
 	type Props = {
 		elements: (ComponentProps<typeof Button> & { label: string })[];
-		right?: boolean;
 		hover?: boolean;
 		content?: Snippet;
 	};
 
-	let { elements, right, hover, content, ...props }: Props & ComponentProps<typeof Button> =
-		$props();
+	let { elements, hover, content, ...props }: Props & ComponentProps<typeof Button> = $props();
 
 	let show = $state(false);
 
@@ -44,7 +42,7 @@
 </script>
 
 <div class="menu" role="none">
-	<Tooltip bind:show {hover} {right}>
+	<Tooltip bind:show {hover}>
 		{#if content}
 			<div class="content" role="none" onclick={handleShow} onblurcapture={handleBlur}>
 				{@render content()}

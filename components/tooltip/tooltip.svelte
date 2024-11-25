@@ -7,10 +7,11 @@
 		children: Snippet;
 		tooltip: Snippet;
 		hover?: boolean;
-		right?: boolean;
 	};
 
-	let { children, tooltip, show = $bindable(), hover, right }: Props = $props();
+	let { children, tooltip, show = $bindable(), hover }: Props = $props();
+
+	let element = $state<HTMLElement>();
 
 	const appear: (node: HTMLElement) => object = () => ({
 		duration: 150,
@@ -26,6 +27,20 @@
 			show = value;
 		}
 	};
+
+	$effect(() => {
+		if (element) {
+			const size = element.getBoundingClientRect();
+			const viewport = document.documentElement.getBoundingClientRect();
+			const diff = viewport.right - size.right;
+
+			if (diff < 0) {
+				element.style.left = `${viewport.right - size.right}px`;
+			} else {
+				element.style.left = "0";
+			}
+		}
+	});
 </script>
 
 <span
@@ -37,7 +52,7 @@
 	{@render children()}
 
 	{#if show}
-		<div transition:appear class="content" class:right>
+		<div transition:appear class="content" bind:this={element}>
 			{@render tooltip()}
 		</div>
 	{/if}
