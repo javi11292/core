@@ -7,9 +7,10 @@
 		children: Snippet;
 		tooltip: Snippet;
 		hover?: boolean;
+		parent?: HTMLElement;
 	};
 
-	let { children, tooltip, show = $bindable(), hover }: Props = $props();
+	let { children, tooltip, parent, show = $bindable(), hover }: Props = $props();
 
 	let element = $state<HTMLElement>();
 
@@ -31,7 +32,7 @@
 	$effect(() => {
 		if (element) {
 			const size = element.getBoundingClientRect();
-			const viewport = document.documentElement.getBoundingClientRect();
+			const viewport = (parent ?? document.documentElement).getBoundingClientRect();
 			const diff = viewport.right - size.right;
 
 			if (diff < 0) {

@@ -8,9 +8,11 @@
 		elements: (ComponentProps<typeof Button> & { label: string })[];
 		hover?: boolean;
 		content?: Snippet;
+		parent?: HTMLElement;
 	};
 
-	let { elements, hover, content, ...props }: Props & ComponentProps<typeof Button> = $props();
+	let { elements, hover, content, parent, ...props }: Props & ComponentProps<typeof Button> =
+		$props();
 
 	let show = $state(false);
 
@@ -42,7 +44,7 @@
 </script>
 
 <div class="menu" role="none">
-	<Tooltip bind:show {hover}>
+	<Tooltip bind:show {hover} {parent}>
 		{#if content}
 			<div class="content" role="none" onclick={handleShow} onblurcapture={handleBlur}>
 				{@render content()}
